@@ -1,14 +1,14 @@
-import React, { lazy } from 'react';
-import { WizardWrapper } from '../Style';
+// import React, { lazy } from 'react';
+// import { WizardWrapper } from '../Style';
 
-const Checkout = lazy(() => import('../../../ecommerce/overview/CheckoutWizard'));
+// const Checkout = lazy(() => import('../../../ecommerce/overview/CheckoutWizard'));
 
-function WizardsOne() {
-  return (
-    <WizardWrapper className="ninjadash-wizard-page">
-      <Checkout />
-    </WizardWrapper>
-  );
-}
+// function WizardsOne() {
+//   return (
+//     <WizardWrapper className="ninjadash-wizard-page">
+//       <Checkout />
+//     </WizardWrapper>
+//   );
+// }
 
-export default WizardsOne;
+// export default WizardsOne;

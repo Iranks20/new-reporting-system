@@ -6,11 +6,11 @@ import { Main } from '../styled';
 import { PageHeaderBanner } from '../../components/banners/Banners';
 
 const OverviewDataList = lazy(() => import('./overview/demoTwo/OverviewDataList'));
-const SaleRevenue = lazy(() => import('./overview/demoTwo/SaleRevenue'));
-const NewProduct = lazy(() => import('./overview/demoTwo/NewProduct'));
+// const SaleRevenue = lazy(() => import('./overview/demoTwo/SaleRevenue'));
+// const NewProduct = lazy(() => import('./overview/demoTwo/NewProduct'));
 // const RevenueGenerated = lazy(() => import('./overview/demoTwo/RevenueGenerated'));
-const SourceRevenueGenerated = lazy(() => import('./overview/demoTwo/SourceRevenueGenerated'));
-const BestSeller = lazy(() => import('./overview/demoTwo/BestSeller'));
+// const SourceRevenueGenerated = lazy(() => import('./overview/demoTwo/SourceRevenueGenerated'));
+// const BestSeller = lazy(() => import('./overview/demoTwo/BestSeller'));
 
 function DemoTwo() {
   const PageRoutes = [
@@ -69,8 +69,7 @@ function DemoTwo() {
           </Col>
         </Row>
 
-        <Row justify="center" gutter={25}>
-          {/* welcome begin */}
+        {/* <Row justify="center" gutter={25}>
           <Col xs={24}>
             <Suspense
               fallback={
@@ -87,7 +86,6 @@ function DemoTwo() {
               />
             </Suspense>
           </Col>
-          {/* welcome end */}
           <Col xxl={12} xs={24}>
             <Suspense
               fallback={
@@ -132,7 +130,7 @@ function DemoTwo() {
               <BestSeller />
             </Suspense>
           </Col>
-        </Row>
+        </Row> */}
       </Main>
     </>
   );

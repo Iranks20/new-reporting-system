@@ -10,8 +10,8 @@ import UserCards from '../pages/overview/UserCard';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Main, FileCardWrapper, BannerCardStyleWrap } from '../styled';
 import GridCard from '../project/overview/GridCard';
-import ProductCards from '../ecommerce/product/overview/ProductCards';
-import ProductCardsList from '../ecommerce/product/overview/ProductCardList';
+// import ProductCards from '../ecommerce/product/overview/ProductCards';
+// import ProductCardsList from '../ecommerce/product/overview/ProductCardList';
 import GalleryCards from '../pages/overview/GalleryCard';
 import ContactCard from '../contact/overview/ContactCard';
 import { Cards } from '../../components/cards/frame/cards-frame';
@@ -95,7 +95,7 @@ function WidgetsCard() {
             return (
               index <= 3 && (
                 <Col key={product.id} xxl={6} sm={12} xs={24}>
-                  <ProductCards product={product} />
+                  {/* <ProductCards product={product} /> */}
                 </Col>
               )
             );
@@ -307,7 +307,7 @@ function WidgetsCard() {
             </Row>
           </Col>
           <Col xxl={18} xs={24}>
-            <ProductCardsList
+            {/* <ProductCardsList
               product={{
                 id: 1,
                 name: 'Montes Scelerisque',
@@ -322,7 +322,7 @@ function WidgetsCard() {
                 description:
                   'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.',
               }}
-            />
+            /> */}
           </Col>
         </Row>
       </Main>

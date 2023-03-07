@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Row, Col, Form, Input, Select, Radio, Table } from 'antd';
+import { Row, Col, Form, Input, Select, Radio } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import UilPlus from '@iconscout/react-unicons/icons/uil-plus';
@@ -12,7 +12,7 @@ import UilMap from '@iconscout/react-unicons/icons/uil-map-marker';
 import UilCredit from '@iconscout/react-unicons/icons/uil-credit-card';
 import UilThumbsUp from '@iconscout/react-unicons/icons/uil-thumbs-up';
 import { FigureWizards, WizardWrapper, OrderSummary, WizardTwo } from '../Style';
-import { ProductTable } from '../../../ecommerce/Style';
+// import { ProductTable } from '../../../ecommerce/Style';
 import { Steps } from '../../../../components/steps/steps';
 import Heading from '../../../../components/heading/heading';
 import { Cards } from '../../../../components/cards/frame/cards-frame';
@@ -180,28 +180,28 @@ function WizardsTwo() {
     });
   }
 
-  const columns = [
-    {
-      title: 'Product',
-      dataIndex: 'product',
-      key: 'product',
-    },
-    {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-    },
-    {
-      title: 'Quantity',
-      dataIndex: 'quantity',
-      key: 'quantity',
-    },
-    {
-      title: 'Total',
-      dataIndex: 'total',
-      key: 'total',
-    },
-  ];
+  // const columns = [
+  //   {
+  //     title: 'Product',
+  //     dataIndex: 'product',
+  //     key: 'product',
+  //   },
+  //   {
+  //     title: 'Price',
+  //     dataIndex: 'price',
+  //     key: 'price',
+  //   },
+  //   {
+  //     title: 'Quantity',
+  //     dataIndex: 'quantity',
+  //     key: 'quantity',
+  //   },
+  //   {
+  //     title: 'Total',
+  //     dataIndex: 'total',
+  //     key: 'total',
+  //   },
+  // ];
 
   return (
     <WizardWrapper className="ninjadash-wizard-page">
@@ -475,11 +475,11 @@ function WizardsTwo() {
                         <div className="atbd-review-order__single">
                           <Cards headless>
                             <>
-                              <ProductTable>
+                              {/* <ProductTable>
                                 <div className="table-cart table-responsive">
                                   <Table pagination={false} dataSource={dataSource} columns={columns} />
                                 </div>
-                              </ProductTable>
+                              </ProductTable> */}
 
                               <Row justify="end">
                                 <Col xxl={8} xl={5} md={9} sm={14} xs={24} offset={!rtl ? 10 : 0}>

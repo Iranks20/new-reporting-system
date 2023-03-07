@@ -3,7 +3,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Axios from './axios';
 import Dashboard from './dashboard';
-import Ecommerce from './ecommerce';
+// import Ecommerce from './ecommerce';
 import Features from './features';
 import Gallery from './gallery';
 import Pages from './pages';
@@ -24,7 +24,6 @@ const Courses = lazy(() => import('../../container/course/Index'));
 const CourseDetails = lazy(() => import('../../container/course/CourseDetails'));
 const Import = lazy(() => import('../../container/importExport/Import'));
 const Export = lazy(() => import('../../container/importExport/Export'));
-const ToDo = lazy(() => import('../../container/toDo/ToDo'));
 const Note = lazy(() => import('../../container/note/Note'));
 const Kanban = lazy(() => import('../../container/kanban/Index'));
 const Contact = lazy(() => import('../../container/contact/Contact'));
@@ -76,7 +75,6 @@ const Admin = React.memo(() => {
         <Route path="app/course/*" element={<Courses />} />
         <Route path="importExport/import" element={<Import />} />
         <Route path="importExport/export" element={<Export />} />
-        <Route path="app/to-do" element={<ToDo />} />
         <Route path="app/note/*" element={<Note />} />
         <Route path="app/kanban/*" element={<Kanban />} />
         <Route path="contact/list" element={<Contact />} />
@@ -86,7 +84,7 @@ const Admin = React.memo(() => {
         <Route path="features/*" element={<Features />} />
         <Route path="project/*" element={<Projects />} />
         <Route path="profile/myProfile/*" element={<Myprofile />} />
-        <Route path="ecommerce/*" element={<Ecommerce />} />
+        {/* <Route path="ecommerce/*" element={<Ecommerce />} /> */}
         <Route path="main/chat/*" element={<Chat />} />
         <Route path="email/*" element={<Inbox />} />
         <Route path="maps/*" element={<Maps />} />

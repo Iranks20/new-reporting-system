@@ -3,12 +3,12 @@ import { Row, Col } from 'antd';
 import { MixedCardWrap } from './Style';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Main } from '../styled';
-import { Cards } from '../../components/cards/frame/cards-frame';
+// import { Cards } from '../../components/cards/frame/cards-frame';
 import Newsletter from '../../components/cards/Newsletter';
-import Ordersummary from '../ecommerce/overview/Ordersummary';
+// import Ordersummary from '../ecommerce/overview/Ordersummary';
 
 const SalesByLocation = lazy(() => import('../dashboard/overview/index/SalesByLocation'));
-const MarketingCampaigns = lazy(() => import('../dashboard/overview/demoFour/MarketingCampaigns'));
+// const MarketingCampaigns = lazy(() => import('../dashboard/overview/demoFour/MarketingCampaigns'));
 const SocialMediaOverview = lazy(() => import('./overview/SocialMediaOverview'));
 const DailyOverview = lazy(() => import('./overview/DailyOverview'));
 
@@ -29,11 +29,11 @@ function WidgetsCard() {
       <Main>
         <MixedCardWrap>
           <Row gutter={25}>
-            <Col xxl={8} xl={10} xs={24}>
+            {/* <Col xxl={8} xl={10} xs={24}>
               <Cards headless>
                 <Ordersummary subtotal={1200} />
               </Cards>
-            </Col>
+            </Col> */}
             <Col xxl={16} xl={14} xs={24}>
               <SalesByLocation />
               <Newsletter />
@@ -44,9 +44,9 @@ function WidgetsCard() {
             <Col xxl={8} md={12} xs={24}>
               <DailyOverview />
             </Col>
-            <Col xxl={8} md={12} xs={24}>
+            {/* <Col xxl={8} md={12} xs={24}>
               <MarketingCampaigns />
-            </Col>
+            </Col> */}
           </Row>
         </MixedCardWrap>
       </Main>

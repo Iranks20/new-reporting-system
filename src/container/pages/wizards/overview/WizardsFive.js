@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Input, Select, Radio, Table } from 'antd';
+import { Row, Col, Form, Input, Select, Radio } from 'antd';
 import { Link } from 'react-router-dom';
 import UilPlus from '@iconscout/react-unicons/icons/uil-plus';
 import UilMinus from '@iconscout/react-unicons/icons/uil-minus';
@@ -8,7 +8,7 @@ import UilCheck from '@iconscout/react-unicons/icons/uil-check';
 import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 import { useDispatch, useSelector } from 'react-redux';
 import { FigureWizards, WizardWrapper, OrderSummary, WizardFive } from '../Style';
-import { ProductTable } from '../../../ecommerce/Style';
+// import { ProductTable } from '../../../ecommerce/Style';
 import { Modal } from '../../../../components/modals/antd-modals';
 import { Steps } from '../../../../components/steps/steps';
 import Heading from '../../../../components/heading/heading';
@@ -167,28 +167,28 @@ function WizardsFive() {
     });
   }
 
-  const columns = [
-    {
-      title: 'Product',
-      dataIndex: 'product',
-      key: 'product',
-    },
-    {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-    },
-    {
-      title: 'Quantity',
-      dataIndex: 'quantity',
-      key: 'quantity',
-    },
-    {
-      title: 'Total',
-      dataIndex: 'total',
-      key: 'total',
-    },
-  ];
+  // const columns = [
+  //   {
+  //     title: 'Product',
+  //     dataIndex: 'product',
+  //     key: 'product',
+  //   },
+  //   {
+  //     title: 'Price',
+  //     dataIndex: 'price',
+  //     key: 'price',
+  //   },
+  //   {
+  //     title: 'Quantity',
+  //     dataIndex: 'quantity',
+  //     key: 'quantity',
+  //   },
+  //   {
+  //     title: 'Total',
+  //     dataIndex: 'total',
+  //     key: 'total',
+  //   },
+  // ];
 
   return (
     <div className="wizard-side-border">
@@ -466,11 +466,11 @@ function WizardsFive() {
                           <div className="atbd-review-order__single">
                             <Cards headless style={{ marginBottom: '0' }}>
                               <>
-                                <ProductTable>
+                                {/* <ProductTable>
                                   <div className="table-cart table-responsive">
                                     <Table pagination={false} dataSource={dataSource} columns={columns} />
                                   </div>
-                                </ProductTable>
+                                </ProductTable> */}
 
                                 <Row justify="end">
                                   <Col sm={14} xs={24} offset={!rtl ? 10 : 0}>
