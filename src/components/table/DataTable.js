@@ -7,6 +7,7 @@ import { DataTableStyleWrap } from './Style';
 import { TableWrapper } from '../../container/styled';
 import { dataLiveFilter, filterWithSubmit } from '../../redux/data-filter/actionCreator';
 import { Button } from '../buttons/buttons';
+// import { Cards } from '../../components/cards/frame/cards-frame';
 
 function DataTable({ filterOption, filterOnchange, rowSelection, tableData, columns }) {
   const dispatch = useDispatch();
@@ -36,15 +37,25 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
           {!filterOnchange ? (
             <div className="ninjadash-datatable-filter__left">
               <div className="ninjadash-datatable-filter__input">
-                <span className="label">Id:</span>
+                <span className="label">Iddddd:</span>
                 <Input className="ninjadash-data-id" placeholder="Search with Id" />
               </div>
+              <p>bossss</p>
               <div className="ninjadash-datatable-filter__input">
                 <span className="label">Status:</span>
                 <Select style={{ width: 200 }} className="ninjadash-data-status" defaultValue="active">
                   <Select.Option value="active">Active</Select.Option>
-                  <Select.Option value="deactiveted">Deactivated</Select.Option>
+                  <Select.Option value="deactiveted">Deactivatedddd</Select.Option>
                   <Select.Option value="blocked">Blocked</Select.Option>
+                </Select>
+              </div>
+              <div className="ninjadash-datatable-filter__input">
+                <span className="label">Actions:</span>
+                <Select style={{ width: 200 }} className="ninjadash-data-status" defaultValue="active">
+                  <Select.Option value="active">Daily</Select.Option>
+                  <Select.Option value="deactiveted">Weekly</Select.Option>
+                  <Select.Option value="blocked">Monthly</Select.Option>
+                  <Select.Option value="blocked">All</Select.Option>
                 </Select>
               </div>
               <div className="ninjadash-datatable-filter__action">
@@ -76,6 +87,27 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
       ) : (
         ''
       )}
+      {/* isbutton={
+        <div className="ninjadash-card-nav">
+          <ul>
+            <li className={sellingTab === 'today' ? 'ninjadash-active' : 'ninjadash-today'}>
+              <Link onClick={(e) => handleChangePeriod('today', e)} to="#">
+                Today
+              </Link>
+            </li>
+            <li className={sellingTab === 'week' ? 'ninjadash-active' : 'ninjadash-week'}>
+              <Link onClick={(e) => handleChangePeriod('week', e)} to="#">
+                Week
+              </Link>
+            </li>
+            <li className={sellingTab === 'month' ? 'ninjadash-active' : 'ninjadash-month'}>
+              <Link onClick={(e) => handleChangePeriod('month', e)} to="#">
+                Month
+              </Link>
+            </li>
+          </ul>
+        </div>
+      } */}
 
       <div className="ninjadasj-datatable">
         <TableWrapper className="table-data-view table-responsive">
