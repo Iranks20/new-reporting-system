@@ -37,25 +37,15 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
           {!filterOnchange ? (
             <div className="ninjadash-datatable-filter__left">
               <div className="ninjadash-datatable-filter__input">
-                <span className="label">Iddddd:</span>
+                <span className="label">Id:</span>
                 <Input className="ninjadash-data-id" placeholder="Search with Id" />
               </div>
-              <p>bossss</p>
               <div className="ninjadash-datatable-filter__input">
                 <span className="label">Status:</span>
                 <Select style={{ width: 200 }} className="ninjadash-data-status" defaultValue="active">
                   <Select.Option value="active">Active</Select.Option>
-                  <Select.Option value="deactiveted">Deactivatedddd</Select.Option>
+                  <Select.Option value="deactiveted">Deactivated</Select.Option>
                   <Select.Option value="blocked">Blocked</Select.Option>
-                </Select>
-              </div>
-              <div className="ninjadash-datatable-filter__input">
-                <span className="label">Actions:</span>
-                <Select style={{ width: 200 }} className="ninjadash-data-status" defaultValue="active">
-                  <Select.Option value="active">Daily</Select.Option>
-                  <Select.Option value="deactiveted">Weekly</Select.Option>
-                  <Select.Option value="blocked">Monthly</Select.Option>
-                  <Select.Option value="blocked">All</Select.Option>
                 </Select>
               </div>
               <div className="ninjadash-datatable-filter__action">
@@ -76,6 +66,15 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
                   <Select.Option value="active">Active</Select.Option>
                   <Select.Option value="deactiveted">Deactivated</Select.Option>
                   <Select.Option value="blocked">Blocked</Select.Option>
+                </Select>
+              </div>
+              <div className="ninjadash-datatable-filter__input">
+                <span className="label">Actions:</span>
+                <Select onChange={handleStatusSearch} style={{ width: 200 }} defaultValue="active">
+                  <Select.Option value="active">Daily</Select.Option>
+                  <Select.Option value="deactiveted">Weekly</Select.Option>
+                  <Select.Option value="blocked">Monthly</Select.Option>
+                  {/* <Select.Option value="blocked">All</Select.Option> */}
                 </Select>
               </div>
             </div>

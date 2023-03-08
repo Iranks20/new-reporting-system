@@ -1,30 +1,30 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Row, Col, Table, Radio, Divider } from 'antd';
+import { Row, Col } from 'antd';
 import UilEye from '@iconscout/react-unicons/icons/uil-eye';
-import UilEdit from '@iconscout/react-unicons/icons/uil-edit';
-import UilTrash from '@iconscout/react-unicons/icons/uil-trash-alt';
+// import UilEdit from '@iconscout/react-unicons/icons/uil-edit';
+// import UilTrash from '@iconscout/react-unicons/icons/uil-trash-alt';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import DataTable from '../../components/table/DataTable';
-import UserListTable from '../pages/overview/UserTable';
-import ProjectLists from '../project/overview/List';
-import TaskList from '../project/overview/TaskList';
+// import UserListTable from '../pages/overview/UserTable';
+// import ProjectLists from '../project/overview/List';
+// import TaskList from '../project/overview/TaskList';
 import { Main, BorderLessHeading } from '../styled';
-import { TaskLists } from '../project/style';
+// import { TaskLists } from '../project/style';
 
 import { tableReadData } from '../../redux/data-filter/actionCreator';
 
 function DataTables() {
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    selectionType: 'checkbox',
-    selectedRowKeys: null,
-    selectedRows: null,
-    values: {},
-  });
+  // const [state, setState] = useState({
+  //   selectionType: 'checkbox',
+  //   selectedRowKeys: null,
+  //   selectedRows: null,
+  //   values: {},
+  // });
 
   const PageRoutes = [
     {
@@ -37,159 +37,159 @@ function DataTables() {
     },
   ];
 
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ];
+  // const dataSource = [
+  //   {
+  //     key: '1',
+  //     name: 'Mike',
+  //     age: 32,
+  //     address: '10 Downing Street',
+  //   },
+  //   {
+  //     key: '2',
+  //     name: 'John',
+  //     age: 42,
+  //     address: '10 Downing Street',
+  //   },
+  // ];
 
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
+  // const columns = [
+  //   {
+  //     title: 'Name',
+  //     dataIndex: 'name',
+  //     key: 'name',
+  //   },
+  //   {
+  //     title: 'Age',
+  //     dataIndex: 'age',
+  //     key: 'age',
+  //   },
+  //   {
+  //     title: 'Address',
+  //     dataIndex: 'address',
+  //     key: 'address',
+  //   },
+  // ];
 
-  const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      setState({ ...state, selectedRowKeys, selectedRows });
-    },
-    getCheckboxProps: (record) => ({
-      disabled: record.name === 'Disabled User', // Column configuration not to be checked
-      name: record.name,
-    }),
-  };
+  // const rowSelection = {
+  //   onChange: (selectedRowKeys, selectedRows) => {
+  //     setState({ ...state, selectedRowKeys, selectedRows });
+  //   },
+  //   getCheckboxProps: (record) => ({
+  //     disabled: record.name === 'Disabled User', // Column configuration not to be checked
+  //     name: record.name,
+  //   }),
+  // };
 
-  const columnsSort = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      filters: [
-        {
-          text: 'Joe',
-          value: 'Joe',
-        },
-        {
-          text: 'Jim',
-          value: 'Jim',
-        },
-        {
-          text: 'Submenu',
-          value: 'Submenu',
-          children: [
-            {
-              text: 'Green',
-              value: 'Green',
-            },
-            {
-              text: 'Black',
-              value: 'Black',
-            },
-          ],
-        },
-      ],
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
-      onFilter: (value, record) => record.name.indexOf(value) === 0,
-      sorter: (a, b) => a.name.length - b.name.length,
-      sortDirections: ['descend'],
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => a.age - b.age,
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      filters: [
-        {
-          text: 'London',
-          value: 'London',
-        },
-        {
-          text: 'New York',
-          value: 'New York',
-        },
-      ],
-      filterMultiple: false,
-      onFilter: (value, record) => record.address.indexOf(value) === 0,
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ['descend', 'ascend'],
-    },
-  ];
+  // const columnsSort = [
+  //   {
+  //     title: 'Name',
+  //     dataIndex: 'name',
+  //     filters: [
+  //       {
+  //         text: 'Joe',
+  //         value: 'Joe',
+  //       },
+  //       {
+  //         text: 'Jim',
+  //         value: 'Jim',
+  //       },
+  //       {
+  //         text: 'Submenu',
+  //         value: 'Submenu',
+  //         children: [
+  //           {
+  //             text: 'Green',
+  //             value: 'Green',
+  //           },
+  //           {
+  //             text: 'Black',
+  //             value: 'Black',
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //     // specify the condition of filtering result
+  //     // here is that finding the name started with `value`
+  //     onFilter: (value, record) => record.name.indexOf(value) === 0,
+  //     sorter: (a, b) => a.name.length - b.name.length,
+  //     sortDirections: ['descend'],
+  //   },
+  //   {
+  //     title: 'Age',
+  //     dataIndex: 'age',
+  //     defaultSortOrder: 'descend',
+  //     sorter: (a, b) => a.age - b.age,
+  //   },
+  //   {
+  //     title: 'Address',
+  //     dataIndex: 'address',
+  //     filters: [
+  //       {
+  //         text: 'London',
+  //         value: 'London',
+  //       },
+  //       {
+  //         text: 'New York',
+  //         value: 'New York',
+  //       },
+  //     ],
+  //     filterMultiple: false,
+  //     onFilter: (value, record) => record.address.indexOf(value) === 0,
+  //     sorter: (a, b) => a.address.length - b.address.length,
+  //     sortDirections: ['descend', 'ascend'],
+  //   },
+  // ];
 
-  const dataSort = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-    },
-    {
-      key: '4',
-      name: 'Jim Red',
-      age: 32,
-      address: 'London No. 2 Lake Park',
-    },
-    {
-      key: '5',
-      name: 'Jim Blue',
-      age: 50,
-      address: 'London No. 2 Lake Park',
-    },
-    {
-      key: '6',
-      name: 'Jim Silver',
-      age: 32,
-      address: 'London No. 2 Lake Park',
-    },
-    {
-      key: '7',
-      name: 'Jim White',
-      age: 25,
-      address: 'London No. 2 Lake Park',
-    },
-    {
-      key: '8',
-      name: 'Jim Orange',
-      age: 25,
-      address: 'London No. 2 Lake Park',
-    },
-  ];
+  // const dataSort = [
+  //   {
+  //     key: '1',
+  //     name: 'John Brown',
+  //     age: 32,
+  //     address: 'New York No. 1 Lake Park',
+  //   },
+  //   {
+  //     key: '2',
+  //     name: 'Jim Green',
+  //     age: 42,
+  //     address: 'London No. 1 Lake Park',
+  //   },
+  //   {
+  //     key: '3',
+  //     name: 'Joe Black',
+  //     age: 32,
+  //     address: 'Sidney No. 1 Lake Park',
+  //   },
+  //   {
+  //     key: '4',
+  //     name: 'Jim Red',
+  //     age: 32,
+  //     address: 'London No. 2 Lake Park',
+  //   },
+  //   {
+  //     key: '5',
+  //     name: 'Jim Blue',
+  //     age: 50,
+  //     address: 'London No. 2 Lake Park',
+  //   },
+  //   {
+  //     key: '6',
+  //     name: 'Jim Silver',
+  //     age: 32,
+  //     address: 'London No. 2 Lake Park',
+  //   },
+  //   {
+  //     key: '7',
+  //     name: 'Jim White',
+  //     age: 25,
+  //     address: 'London No. 2 Lake Park',
+  //   },
+  //   {
+  //     key: '8',
+  //     name: 'Jim Orange',
+  //     age: 25,
+  //     address: 'London No. 2 Lake Park',
+  //   },
+  // ];
 
   useEffect(() => {
     if (dispatch) {
@@ -221,12 +221,12 @@ function DataTables() {
             <Link className="view" to="#">
               <UilEye />
             </Link>
-            <Link className="edit" to="#">
+            {/* <Link className="edit" to="#">
               <UilEdit />
             </Link>
             <Link className="delete" to="#">
               <UilTrash />
-            </Link>
+            </Link> */}
           </div>
         ),
       });
@@ -277,9 +277,9 @@ function DataTables() {
     },
   ];
 
-  function onChange(pagination, filters, sorter, extra) {
-    setState({ ...state, values: { pagination, filters, sorter, extra } });
-  }
+  // function onChange(pagination, filters, sorter, extra) {
+  //   setState({ ...state, values: { pagination, filters, sorter, extra } });
+  // }
 
   return (
     <>
@@ -299,7 +299,7 @@ function DataTables() {
               </Cards>
             </BorderLessHeading>
           </Col>
-          <Col xs={24}>
+          {/* <Col xs={24}>
             <BorderLessHeading>
               <Cards title="Data Table 2">
                 <DataTable
@@ -321,8 +321,8 @@ function DataTables() {
             <Cards title="User List">
               <UserListTable />
             </Cards>
-          </Col>
-          <Col xs={24}>
+          </Col> */}
+          {/* <Col xs={24}>
             <Cards title="Selection">
               <div>
                 <Radio.Group
@@ -374,14 +374,14 @@ function DataTables() {
                 onChange={onChange}
               />
             </Cards>
-          </Col>
-          <Col xs={24}>
+          </Col> */}
+          {/* <Col xs={24}>
             <Cards title="Task List">
               <TaskLists>
                 <TaskList />
               </TaskLists>
             </Cards>
-          </Col>
+          </Col> */}
         </Row>
       </Main>
     </>

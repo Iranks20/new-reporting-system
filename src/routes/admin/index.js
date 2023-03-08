@@ -11,7 +11,7 @@ import Users from './users';
 import Widgets from './widgets';
 import withAdminLayout from '../../layout/withAdminLayout';
 
-const Charts = lazy(() => import('./charts'));
+// const Charts = lazy(() => import('./charts'));
 const KnowledgeBase = lazy(() => import('../../container/pages/knowledgeBase/Index'));
 const AllArticle = lazy(() => import('../../container/pages/knowledgeBase/AllArticle'));
 const KnowledgeSingle = lazy(() => import('../../container/pages/knowledgeBase/SingleKnowledge'));
@@ -29,10 +29,10 @@ const Kanban = lazy(() => import('../../container/kanban/Index'));
 const Contact = lazy(() => import('../../container/contact/Contact'));
 const ContactGrid = lazy(() => import('../../container/contact/ContactGrid'));
 const ContactAddNew = lazy(() => import('../../container/contact/AddNew'));
-const Calendars = lazy(() => import('../../container/calendar/Calendar'));
+// const Calendars = lazy(() => import('../../container/calendar/Calendar'));
 const Projects = lazy(() => import('./projects'));
 const Myprofile = lazy(() => import('../../container/profile/myProfile/Index'));
-const Chat = lazy(() => import('../../container/chat/ChatApp'));
+// const Chat = lazy(() => import('../../container/chat/ChatApp'));
 const Inbox = lazy(() => import('../../container/email/Email'));
 const Maps = lazy(() => import('./maps'));
 const Editors = lazy(() => import('../../container/pages/Editor'));
@@ -65,7 +65,7 @@ const Admin = React.memo(() => {
         <Route path="knowledgeBase/*" element={<KnowledgeBase />} />
         <Route path="knowledgebaseSingle/:id" element={<KnowledgeSingle />} />
         <Route path="components/*" element={<Components />} />
-        <Route path="charts/*" element={<Charts />} />
+        {/* <Route path="charts/*" element={<Charts />} /> */}
         <Route path="app/task/*" element={<Task />} />
         <Route path="users/*" element={<Users />} />
         <Route path="app/support/tickets/*" element={<Tickets />} />
@@ -80,12 +80,12 @@ const Admin = React.memo(() => {
         <Route path="contact/list" element={<Contact />} />
         <Route path="contact/grid" element={<ContactGrid />} />
         <Route path="contact/addNew" element={<ContactAddNew />} />
-        <Route path="app/calendar/*" element={<Calendars />} />
+        {/* <Route path="app/calendar/*" element={<Calendars />} /> */}
         <Route path="features/*" element={<Features />} />
         <Route path="project/*" element={<Projects />} />
         <Route path="profile/myProfile/*" element={<Myprofile />} />
         {/* <Route path="ecommerce/*" element={<Ecommerce />} /> */}
-        <Route path="main/chat/*" element={<Chat />} />
+        {/* <Route path="main/chat/*" element={<Chat />} /> */}
         <Route path="email/*" element={<Inbox />} />
         <Route path="maps/*" element={<Maps />} />
         <Route path="editor" element={<Editors />} />
