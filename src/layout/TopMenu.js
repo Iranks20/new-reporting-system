@@ -165,11 +165,11 @@ function TopMenu() {
                       Products Details
                     </NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink onClick={addParentActive} to={`${path}/ecommerce/add-product`}>
                       Product Add
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li>
                     <NavLink onClick={addParentActive} to={`${path}/ecommerce/edit-product`}>
                       Product Edit
