@@ -4,10 +4,10 @@ import { MixedCardWrap } from './Style';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Main } from '../styled';
 // import { Cards } from '../../components/cards/frame/cards-frame';
-import Newsletter from '../../components/cards/Newsletter';
+// import Newsletter from '../../components/cards/Newsletter';
 // import Ordersummary from '../ecommerce/overview/Ordersummary';
 
-const SalesByLocation = lazy(() => import('../dashboard/overview/index/SalesByLocation'));
+// const SalesByLocation = lazy(() => import('../dashboard/overview/index/SalesByLocation'));
 // const MarketingCampaigns = lazy(() => import('../dashboard/overview/demoFour/MarketingCampaigns'));
 const SocialMediaOverview = lazy(() => import('./overview/SocialMediaOverview'));
 const DailyOverview = lazy(() => import('./overview/DailyOverview'));
@@ -34,10 +34,10 @@ function WidgetsCard() {
                 <Ordersummary subtotal={1200} />
               </Cards>
             </Col> */}
-            <Col xxl={16} xl={14} xs={24}>
+            {/* <Col xxl={16} xl={14} xs={24}>
               <SalesByLocation />
               <Newsletter />
-            </Col>
+            </Col> */}
             <Col xxl={8} xs={24}>
               <SocialMediaOverview />
             </Col>

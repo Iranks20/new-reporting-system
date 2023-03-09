@@ -7,7 +7,7 @@ import { Main } from '../styled';
 const OverviewDataList = lazy(() => import('./overview/index/OverviewDataList'));
 const SalesReport = lazy(() => import('./overview/index/SalesReport'));
 const SalesGrowth = lazy(() => import('./overview/index/SalesGrowth'));
-const SalesByLocation = lazy(() => import('./overview/index/SalesByLocation'));
+// const SalesByLocation = lazy(() => import('./overview/index/SalesByLocation'));
 const TopSellingProduct = lazy(() => import('./overview/index/TopSellingProducts'));
 const BrowserState = lazy(() => import('./overview/index/BrowserState'));
 
@@ -61,7 +61,7 @@ function Dashboard() {
               <SalesGrowth />
             </Suspense>
           </Col>
-          <Col xxl={16} xs={24}>
+          {/* <Col xxl={16} xs={24}>
             <Suspense
               fallback={
                 <Cards headless>
@@ -71,7 +71,7 @@ function Dashboard() {
             >
               <SalesByLocation />
             </Suspense>
-          </Col>
+          </Col> */}
         </Row>
         <Row gutter={25}>
           <Col xl={12} xs={24}>
