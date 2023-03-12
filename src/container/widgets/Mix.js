@@ -9,7 +9,7 @@ import { Main } from '../styled';
 
 // const SalesByLocation = lazy(() => import('../dashboard/overview/index/SalesByLocation'));
 // const MarketingCampaigns = lazy(() => import('../dashboard/overview/demoFour/MarketingCampaigns'));
-const SocialMediaOverview = lazy(() => import('./overview/SocialMediaOverview'));
+// const SocialMediaOverview = lazy(() => import('./overview/SocialMediaOverview'));
 const DailyOverview = lazy(() => import('./overview/DailyOverview'));
 
 function WidgetsCard() {
@@ -38,9 +38,9 @@ function WidgetsCard() {
               <SalesByLocation />
               <Newsletter />
             </Col> */}
-            <Col xxl={8} xs={24}>
+            {/* <Col xxl={8} xs={24}>
               <SocialMediaOverview />
-            </Col>
+            </Col> */}
             <Col xxl={8} md={12} xs={24}>
               <DailyOverview />
             </Col>

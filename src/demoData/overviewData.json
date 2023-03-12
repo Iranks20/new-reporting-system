@@ -58,35 +58,35 @@
     "id": 5,
     "type": "primary",
     "icon": "arrow-growth.svg",
-    "label": "Total Traffic",
-    "total": "30825",
+    "label": "Daily incidences",
+    "total": "10",
     "suffix": "",
     "prefix": "",
     "status": "growth",
     "statusRate": "25.36",
     "decimels": 0,
     "separator": ",",
-    "dataPeriod": "Since last month"
+    "dataPeriod": "Today"
   },
   {
     "id": 6,
     "type": "secondary",
     "icon": "users-alt.svg",
-    "label": "New Customers",
-    "total": "2850",
+    "label": "Weekly incidences",
+    "total": "80",
     "suffix": "",
     "prefix": "",
     "status": "growth",
     "statusRate": "9.87",
     "decimels": 0,
-    "dataPeriod": "Since last month"
+    "dataPeriod": "Since last week"
   },
   {
     "id": 7,
     "type": "success",
     "icon": "dollar-circle.svg",
-    "label": "Sales",
-    "total": "529",
+    "label": "monthly incidences",
+    "total": "200",
     "suffix": "",
     "prefix": "",
     "status": "down",
@@ -98,13 +98,13 @@
     "id": 8,
     "type": "info",
     "icon": "speed-meter.svg",
-    "label": "Performance",
+    "label": "All Incidences",
     "total": "28.50",
     "suffix": "%",
     "prefix": "",
     "status": "growth",
     "statusRate": "9.87",
     "decimels": 2,
-    "dataPeriod": "Since last month"
+    "dataPeriod": "Since the start"
   }
 ]

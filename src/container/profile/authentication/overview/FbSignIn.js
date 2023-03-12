@@ -32,7 +32,7 @@ function SignIn() {
 
   useEffect(() => {
     if (isFbAuthenticate) {
-      dispatch(fbLogin(() => navigate('/admin')));
+      dispatch(fbLogin(() => navigate('/admin/demo-2')));
     }
   }, [isFbAuthenticate, navigate, dispatch]);
 

@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 const Button = lazy(() => import('../../container/ui-elements/Button'));
-const Alerts = lazy(() => import('../../container/ui-elements/Alerts'));
+// const Alerts = lazy(() => import('../../container/ui-elements/Alerts'));
 const Modals = lazy(() => import('../../container/ui-elements/Modals'));
 const Cards = lazy(() => import('../../container/ui-elements/Cards'));
 const Grid = lazy(() => import('../../container/ui-elements/Grid'));
@@ -55,7 +55,7 @@ function ComponentRoute() {
   return (
     <Routes>
       <Route path="button" element={<Button />} />
-      <Route path="alerts" element={<Alerts />} />
+      {/* <Route path="alerts" element={<Alerts />} /> */}
       <Route path="modals" element={<Modals />} />
       <Route path="cards" element={<Cards />} />
       <Route path="grid" element={<Grid />} />

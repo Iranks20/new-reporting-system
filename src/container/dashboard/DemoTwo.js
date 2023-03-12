@@ -39,7 +39,7 @@ function DemoTwo() {
             >
               <PageHeaderBanner
                 type="corporate"
-                title="Hey Danial! Welcome to the Dashboard"
+                title="Hey! Welcome to the Admin Dashboard"
                 subtitle="There are many variations of passages of Lorem Ipsum available,
                 ut the majority have suffered passages of Lorem Ipsum available alteration in some form"
               />

@@ -11,7 +11,8 @@ import ProtectedRoute from './components/utilities/protectedRoute';
 import config from './config/config';
 import store, { rrfProps } from './redux/store';
 
-import Admin from './routes/admin';
+// import Admin from './routes/admin';
+import DemoTwo from './routes/admin';
 import Auth from './routes/auth';
 import './static/css/style.css';
 
@@ -58,13 +59,13 @@ function ProviderConfig() {
                   </Routes>
                 ) : (
                   <Routes>
-                    <Route path="/admin/*" element={<ProtectedRoute path="/*" Component={Admin} />} />
+                    <Route path="/admin*" element={<ProtectedRoute path="/*" Component={DemoTwo} />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 )}
                 {isLoggedIn && (path === process.env.PUBLIC_URL || path === `${process.env.PUBLIC_URL}/`) && (
                   <Routes>
-                    <Route path="/" element={<Navigate to="/admin" />} />
+                    <Route path="/" element={<Navigate to="/admin/demo-2" />} />
                   </Routes>
                 )}
               </Router>

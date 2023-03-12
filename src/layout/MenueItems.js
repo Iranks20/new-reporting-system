@@ -125,7 +125,7 @@ function MenuItems({ toggleCollapsed }) {
         <NavLink onClick={toggleCollapsed} to={`${path}/demo-2`}>
           {t('demo')} {t('2')}
         </NavLink>,
-        'demo-2',
+        'dashboardd',
         null,
       ),
       // getItem(
@@ -432,41 +432,41 @@ function MenuItems({ toggleCollapsed }) {
     //   ),
     // ),
     getItem(t('users'), 'users', !topMenu && <UilUsersAlt />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/team`}>
-          {t('team')}
-        </NavLink>,
-        'team',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/grid`}>
-          {t('users')} {t('grid')}
-        </NavLink>,
-        'user-grid',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/list`}>
-          {t('users')} {t('list')}
-        </NavLink>,
-        'user-list',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/grid-style`}>
-          {t('users')} {t('grid')} {t('style')}
-        </NavLink>,
-        'grid-style',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/add-user/info`}>
-          {t('add')} {t('user')}
-        </NavLink>,
-        'addUser',
-        null,
-      ),
+      // getItem(
+      //   <NavLink onClick={toggleCollapsed} to={`${path}/users/team`}>
+      //     {t('team')}
+      //   </NavLink>,
+      //   'team',
+      //   null,
+      // ),
+      // getItem(
+      //   <NavLink onClick={toggleCollapsed} to={`${path}/users/grid`}>
+      //     {t('users')} {t('grid')}
+      //   </NavLink>,
+      //   'user-grid',
+      //   null,
+      // ),
+      // getItem(
+      //   <NavLink onClick={toggleCollapsed} to={`${path}/users/list`}>
+      //     {t('users')} {t('list')}
+      //   </NavLink>,
+      //   'user-list',
+      //   null,
+      // ),
+      // getItem(
+      //   <NavLink onClick={toggleCollapsed} to={`${path}/users/grid-style`}>
+      //     {t('users')} {t('grid')} {t('style')}
+      //   </NavLink>,
+      //   'grid-style',
+      //   null,
+      // ),
+      // getItem(
+      //   <NavLink onClick={toggleCollapsed} to={`${path}/users/add-user/info`}>
+      //     {t('add')} {t('user')}
+      //   </NavLink>,
+      //   'addUser',
+      //   null,
+      // ),
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/users/dataTable`}>
           {t('users')} {t('table')}

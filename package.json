@@ -2,6 +2,7 @@
   "name": "HexaDash",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@iconscout/react-unicons": "^1.1.6",
     "@testing-library/jest-dom": "^5.16.3",
@@ -70,7 +71,6 @@
     "web-vitals": "^2.1.4",
     "xlsx": "^0.17.5"
   },
-  "homepage": "/hexadash-react",
   "resolutions": {
     "autoprefixer": "10.4.5"
   },
@@ -103,7 +103,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.9",
-    "@craco/craco": "^6.4.3",
+    "@craco/craco": "^6.4.5",
     "airbnb": "^0.0.2",
     "browserify": "^17.0.0",
     "craco-less": "^2.0.0",
