@@ -283,12 +283,12 @@ function DataTables() {
 
   return (
     <>
-      <PageHeader className="ninjadash-page-header-main" title="Table" routes={PageRoutes} />
+      <PageHeader className="ninjadash-page-header-main" title="Reporters" routes={PageRoutes} />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
             <BorderLessHeading>
-              <Cards title="Data Table">
+              <Cards title="Reporters Table">
                 <DataTable
                   filterOption
                   filterOnchange
