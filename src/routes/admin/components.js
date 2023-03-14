@@ -11,7 +11,6 @@ const Breadcrumb = lazy(() => import('../../container/ui-elements/Breadcrumb'));
 const Pagination = lazy(() => import('../../container/ui-elements/Pagination'));
 const PageHeader = lazy(() => import('../../container/ui-elements/PageHeaders'));
 const Steps = lazy(() => import('../../container/ui-elements/Steps'));
-const Comments = lazy(() => import('../../container/ui-elements/Comments'));
 const Empty = lazy(() => import('../../container/ui-elements/Empty'));
 const Statistic = lazy(() => import('../../container/ui-elements/Statistic'));
 const Rate = lazy(() => import('../../container/ui-elements/Rate'));
@@ -65,7 +64,6 @@ function ComponentRoute() {
       <Route path="pagination" element={<Pagination />} />
       <Route path="page-headers" element={<PageHeader />} />
       <Route path="steps" element={<Steps />} />
-      <Route path="comments" element={<Comments />} />
       <Route path="empty" element={<Empty />} />
       <Route path="statistic" element={<Statistic />} />
       <Route path="rate" element={<Rate />} />

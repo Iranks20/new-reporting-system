@@ -9,7 +9,6 @@ import { Cascader } from '../../components/cascader/cascader';
 import { Button } from '../../components/buttons/buttons';
 import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -35,7 +34,6 @@ function Forms() {
         title="Form"
         buttons={[
           <div key="1" className="page-header-actions">
-            <CalendarButtonPageHeader />
             <ExportButtonPageHeader />
             <ShareButtonPageHeader />
             <Button size="small" type="primary">

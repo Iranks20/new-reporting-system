@@ -8,7 +8,6 @@ import { Button } from '../../components/buttons/buttons';
 
 import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
-import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const routes = [
   {
@@ -61,7 +60,6 @@ function PageHeaders() {
                 subTitle="This is a subtitle"
                 buttons={[
                   <div key="1" className="page-header-actions">
-                    <CalendarButtonPageHeader />
                     <ExportButtonPageHeader />
                     <ShareButtonPageHeader />
                     <Button size="small" type="primary">
