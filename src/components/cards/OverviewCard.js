@@ -30,7 +30,7 @@ function OverviewCard({ data, className, bottomStatus, contentFirst, halfCircleI
             }
           >
             <div className={`ninjadash-overview-card__top--icon ninjadash-${type}`}>
-              <ReactSVG src={require(`../../static/img/icon/${icon}`)} />
+              <ReactSVG src={`../../static/img/icon/${icon}`} />
             </div>
             <div
               className={

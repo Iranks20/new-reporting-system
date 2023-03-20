@@ -6,11 +6,6 @@ import { Main } from '../styled';
 import { PageHeaderBanner } from '../../components/banners/Banners';
 
 const OverviewDataList = lazy(() => import('./overview/demoTwo/OverviewDataList'));
-// const SaleRevenue = lazy(() => import('./overview/demoTwo/SaleRevenue'));
-// const NewProduct = lazy(() => import('./overview/demoTwo/NewProduct'));
-// const RevenueGenerated = lazy(() => import('./overview/demoTwo/RevenueGenerated'));
-// const SourceRevenueGenerated = lazy(() => import('./overview/demoTwo/SourceRevenueGenerated'));
-// const BestSeller = lazy(() => import('./overview/demoTwo/BestSeller'));
 
 function DemoTwo() {
   const PageRoutes = [
@@ -20,7 +15,7 @@ function DemoTwo() {
     },
     {
       path: 'first',
-      breadcrumbName: 'Demo 2',
+      breadcrumbName: 'Counting',
     },
   ];
   return (
@@ -68,69 +63,6 @@ function DemoTwo() {
             </Suspense>
           </Col>
         </Row>
-
-        {/* <Row justify="center" gutter={25}>
-          <Col xs={24}>
-            <Suspense
-              fallback={
-                <Cards headless>
-                  <Skeleton active />
-                </Cards>
-              }
-            >
-              <PageHeaderBanner
-                type="corporate"
-                title="Hey Danial! Welcome to the Dashboard"
-                subtitle="There are many variations of passages of Lorem Ipsum available,
-                ut the majority have suffered passages of Lorem Ipsum available alteration in some form"
-              />
-            </Suspense>
-          </Col>
-          <Col xxl={12} xs={24}>
-            <Suspense
-              fallback={
-                <Cards headless>
-                  <Skeleton active />
-                </Cards>
-              }
-            >
-              <SaleRevenue />
-            </Suspense>
-          </Col>
-          <Col xxl={12} lg={12} xs={24}>
-            <Suspense
-              fallback={
-                <Cards headless>
-                  <Skeleton active />
-                </Cards>
-              }
-            >
-              <SourceRevenueGenerated />
-            </Suspense>
-          </Col>
-          <Col xxl={8} lg={12} xs={24}>
-            <Suspense
-              fallback={
-                <Cards headless>
-                  <Skeleton active />
-                </Cards>
-              }
-            >
-              <NewProduct />
-            </Suspense>
-          </Col>
-          <Col xxl={16} xs={24}>
-            <Suspense
-              fallback={
-                <Cards headless>
-                  <Skeleton active />
-                </Cards>
-              }
-            >
-              <BestSeller />
-            </Suspense>
-          </Col>
-        </Row> */}
       </Main>
     </>
   );
