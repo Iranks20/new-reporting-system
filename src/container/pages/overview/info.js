@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Input, Upload, Select } from 'antd';
-import { Link } from 'react-router-dom';
-import UilCamera from '@iconscout/react-unicons/icons/uil-camera';
+import { Row, Col, Form, Input } from 'antd';
+// import { Link } from 'react-router-dom';
+// import UilCamera from '@iconscout/react-unicons/icons/uil-camera';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
 
-const { Option } = Select;
 function Info() {
   const [state, setState] = useState({
     values: '',
@@ -26,7 +25,7 @@ function Info() {
                 Personal Information
               </Heading>
 
-              <figure className="photo-upload align-center-v">
+              {/* <figure className="photo-upload align-center-v">
                 <img src={require('../../../static/img/avatar/profileImage.png')} alt="" />
                 <figcaption>
                   <Upload>
@@ -38,7 +37,7 @@ function Info() {
                     <Heading as="h4">Profile Photo</Heading>
                   </div>
                 </figcaption>
-              </figure>
+              </figure> */}
 
               <Form.Item label="Name" name="name">
                 <Input placeholder="Input Name" />
@@ -56,26 +55,20 @@ function Info() {
                 <Input placeholder="+440 2546 5236" />
               </Form.Item>
 
-              <Form.Item name="country" initialValue="" label="Country">
-                <Select style={{ width: '100%' }}>
-                  <Option value="">Please Select</Option>
-                  <Option value="bangladesh">Bangladesh</Option>
-                  <Option value="india">India</Option>
-                  <Option value="pakistan">Pakistan</Option>
-                </Select>
+              <Form.Item name="password" label="Password">
+                <Input placeholder="UFHhdbd2000" />
               </Form.Item>
 
-              <Form.Item initialValue="" name="city" label="City">
-                <Select style={{ width: '100%' }}>
-                  <Option value="">Please Select</Option>
-                  <Option value="dhaka">Dhaka</Option>
-                  <Option value="khulna">Khulna</Option>
-                  <Option value="barisal">Barisal</Option>
-                </Select>
+              <Form.Item name="company" label="Company">
+                <Input placeholder="Company name" />
               </Form.Item>
 
-              <Form.Item name="website" label="Website">
-                <Input placeholder="www.example.com" />
+              <Form.Item name="position" label="Position">
+                <Input placeholder="Company name" />
+              </Form.Item>
+
+              <Form.Item name="country" label="Country">
+                <Input placeholder="Nationality" />
               </Form.Item>
 
               <Form.Item>
@@ -89,7 +82,7 @@ function Info() {
                     Reset
                   </Button>
                   <Button htmlType="submit" type="primary">
-                    <Link to="/admin/users/add-user/work">Save & Next</Link>
+                    Submit
                   </Button>
                 </div>
               </Form.Item>

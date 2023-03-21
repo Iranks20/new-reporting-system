@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+// import { useSelector } from 'react-redux';
 import { Table } from 'antd';
 import UilEye from '@iconscout/react-unicons/icons/uil-eye';
 import UilEdit from '@iconscout/react-unicons/icons/uil-edit';
@@ -11,54 +11,53 @@ import { Button } from '../../../components/buttons/buttons';
 import { Cards } from '../../../components/cards/frame/cards-frame';
 
 function UserListTable() {
-  const { users } = useSelector((state) => {
-    return {
-      users: state.users,
-    };
-  });
+  const [usersTableData, setUsersTableData] = useState([]);
 
-  const usersTableData = [];
-
-  users.map((user) => {
-    const { id, name, designation, img, status } = user;
-
-    return usersTableData.push({
-      key: id,
-      user: (
-        <div className="user-info">
-          <figure>
-            <img style={{ width: '40px' }} src={require(`../../../${img}`)} alt="" />
-          </figure>
-          <figcaption>
-            <Heading className="user-name" as="h6">
-              {name}
-            </Heading>
-            <span className="user-designation">San Francisco, CA</span>
-          </figcaption>
-        </div>
-      ),
-      email: 'john@gmail.com',
-      company: 'Business Development',
-      position: designation,
-      joinDate: 'January 20, 2020',
-      status: <span className={`status-text ${status}`}>{status}</span>,
-      action: (
-        <div className="table-actions">
-          <Button className="btn-icon" type="primary" to="#" shape="circle">
-            <UilEye />
-          </Button>
-          <Button className="btn-icon" type="info" to="#" shape="circle">
-            <UilEdit />
-          </Button>
-          <Button className="btn-icon" type="danger" to="#" shape="circle">
-            <UilTrashAlt />
-          </Button>
-        </div>
-      ),
-    });
-  });
-
+  useEffect(() => {
+    fetch('http://localhost:5000/api/v2/users')
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedData = data.map((user) => ({
+          key: user.id,
+          user: (
+            <div className="user-info">
+              <figcaption>
+                <Heading className="user-name" as="h6">
+                  {user.name}
+                </Heading>
+                <span className="user-designation">{user.designation}</span>
+              </figcaption>
+            </div>
+          ),
+          id: user.id,
+          email: user.email,
+          phoneNumber: user.phoneNumber,
+          company: user.company,
+          position: user.position,
+          datetime: user.datetime,
+          action: (
+            <div className="table-actions">
+              <Button className="btn-icon" type="primary" to="#" shape="circle">
+                <UilEye />
+              </Button>
+              <Button className="btn-icon" type="info" to="#" shape="circle">
+                <UilEdit />
+              </Button>
+              <Button className="btn-icon" type="danger" to="#" shape="circle">
+                <UilTrashAlt />
+              </Button>
+            </div>
+          ),
+        }));
+        setUsersTableData(formattedData);
+      });
+  }, []);
   const usersTableColumns = [
+    {
+      title: 'Id',
+      dataIndex: 'id',
+      key: 'id',
+    },
     {
       title: 'User',
       dataIndex: 'user',
@@ -68,6 +67,11 @@ function UserListTable() {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
+    },
+    {
+      title: 'Phone Number',
+      dataIndex: 'phoneNumber',
+      key: 'phoneNumber',
     },
     {
       title: 'Company',
@@ -81,14 +85,14 @@ function UserListTable() {
     },
     {
       title: 'Join Date',
-      dataIndex: 'joinDate',
-      key: 'joinDate',
+      dataIndex: 'datetime',
+      key: 'datetime',
     },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-    },
+    // {
+    //   title: 'Status',
+    //   dataIndex: 'status',
+    //   key: 'status',
+    // },
     {
       title: 'Actions',
       dataIndex: 'action',

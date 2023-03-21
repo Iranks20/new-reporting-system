@@ -86,7 +86,7 @@ function UserList() {
           title="User List Data Table"
           subTitle={
             <>
-              <span className="title-counter">274 Users </span>
+              <span className="title-counter">279 Users </span>
               <AutoComplete
                 onSearch={handleSearch}
                 dataSource={notData}
