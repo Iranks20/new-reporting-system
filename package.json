@@ -61,6 +61,7 @@
     "react-sortable-hoc": "^2.0.0",
     "react-svg": "^14.1.9",
     "react-tagsinput": "^3.19.0",
+    "react-toastify": "^9.1.1",
     "react-tooltip": "^4.2.21",
     "recharts": "^2.1.8",
     "redux-firestore": "^1.0.0",

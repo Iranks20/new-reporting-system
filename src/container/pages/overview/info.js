@@ -1,22 +1,51 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Input } from 'antd';
-// import { Link } from 'react-router-dom';
-// import UilCamera from '@iconscout/react-unicons/icons/uil-camera';
+import { Row, Col, Form, message, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
+// import { ToastContainer, toast } from 'react-toastify';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
 
 function Info() {
-  const [state, setState] = useState({
-    values: '',
-  });
   const [form] = Form.useForm();
-  const handleSubmit = (values) => {
-    setState({ ...state, values });
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (values) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/v2/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('API response:', data);
+      setIsLoading(false);
+      message.info('Admin user added successfully');
+      // toast('API response:', data);
+      navigate('/admin/users/dataTable');
+
+      // TODO: handle success or error state
+    } catch (error) {
+      console.error('API error:', error);
+      // TODO: handle error state
+      setIsLoading(false);
+      message.info('Fill the required fields or else internal server error');
+      // toast('API error:', error);
+    }
   };
 
   return (
     <Row justify="center">
+      {/* <ToastContainer /> */}
       <Col xxl={10} xl={14} md={16} xs={24}>
         <div className="user-info-form">
           <BasicFormWrapper>
@@ -24,20 +53,6 @@ function Info() {
               <Heading className="form-title" as="h4">
                 Personal Information
               </Heading>
-
-              {/* <figure className="photo-upload align-center-v">
-                <img src={require('../../../static/img/avatar/profileImage.png')} alt="" />
-                <figcaption>
-                  <Upload>
-                    <Link className="btn-upload" to="#">
-                      <UilCamera />
-                    </Link>
-                  </Upload>
-                  <div className="info">
-                    <Heading as="h4">Profile Photo</Heading>
-                  </div>
-                </figcaption>
-              </figure> */}
 
               <Form.Item label="Name" name="name">
                 <Input placeholder="Input Name" />
@@ -51,7 +66,7 @@ function Info() {
                 <Input placeholder="name@example.com" />
               </Form.Item>
 
-              <Form.Item name="phone" label="Phone Number">
+              <Form.Item name="phoneNumber" label="PhoneNumber">
                 <Input placeholder="+440 2546 5236" />
               </Form.Item>
 
@@ -64,10 +79,10 @@ function Info() {
               </Form.Item>
 
               <Form.Item name="position" label="Position">
-                <Input placeholder="Company name" />
+                <Input placeholder="Position" />
               </Form.Item>
 
-              <Form.Item name="country" label="Country">
+              <Form.Item name="nationality" label="nationality">
                 <Input placeholder="Nationality" />
               </Form.Item>
 
@@ -81,7 +96,7 @@ function Info() {
                   >
                     Reset
                   </Button>
-                  <Button htmlType="submit" type="primary">
+                  <Button htmlType="submit" type="primary" disabled={isLoading}>
                     Submit
                   </Button>
                 </div>
