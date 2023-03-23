@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { useSelector } from 'react-redux';
-import { Table, Form, Input } from 'antd';
+import { Table, Form, Input, message } from 'antd';
+// import { useNavigate } from 'react-router-dom';
 import UilEye from '@iconscout/react-unicons/icons/uil-eye';
 import UilEdit from '@iconscout/react-unicons/icons/uil-edit';
 import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
@@ -14,10 +15,14 @@ import { Modal } from '../../../components/modals/antd-modals';
 function UserListTable() {
   const [usersTableData, setUsersTableData] = useState([]);
   const [state, setState] = useState({});
-  const showModal = () => {
+  const [userData, setUserData] = useState({});
+  // const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const showModal = (id) => {
     setState({
       ...state,
       visible: true,
+      id,
     });
   };
   const onCancel = () => {
@@ -30,20 +35,40 @@ function UserListTable() {
   };
   const handleCancel = () => {
     onCancel();
+    setUserData({});
+    // setState({
+    //   // ...state,
+    //   id: null,
+    // });
   };
-  // const showConfirm = () => {
-  //   alertModal.confirm({
-  //     title: 'Do you want to delete these items?',
-  //     content: 'When clicked the OK button, this dialog will be closed after 1 second',
-  //     onOk() {
-  //       return new Promise((resolve, reject) => {
-  //         setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-  //       }).catch(() => {});
-  //     },
-  //     onCancel() {},
-  //   });
-  // };
-
+  const handleFormSubmit = () => {
+    fetch(`http://localhost:5000/api/v2/users/${state.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.error === false) {
+          // navigate('/admin/users/dataTable');
+          message.info('admin user added successful');
+          setIsLoading(false);
+          onCancel();
+        } else {
+          setIsLoading(false);
+          message.info('error occcured fill all requird fields and try again');
+        }
+        // Handle response data
+      })
+      .catch((error) => {
+        console.error(error);
+        message.info('unknown error occcured');
+        setIsLoading(false);
+      });
+  };
   useEffect(() => {
     fetch('http://localhost:5000/api/v2/users')
       .then((response) => response.json())
@@ -71,7 +96,7 @@ function UserListTable() {
               <Button className="btn-icon" type="primary" to="#" shape="circle">
                 <UilEye />
               </Button>
-              <Button className="btn-icon" type="info" shape="circle" onClick={showModal}>
+              <Button className="btn-icon" type="info" shape="circle" onClick={() => showModal(user.id)}>
                 <UilEdit />
               </Button>
               <Button className="btn-icon" type="danger" to="#" shape="circle">
@@ -159,39 +184,89 @@ function UserListTable() {
         type={state.modalType}
         title="Contact Information"
         visible={state.visible}
-        footer={null}
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleFormSubmit} disabled={isLoading}>
+            Submit
+          </Button>,
+        ]}
         onCancel={handleCancel}
       >
         <div className="project-modal">
           <BasicFormWrapper>
             <Form name="contact">
-              <Form.Item label="Name" name="name">
-                <Input placeholder="Input Name" />
+              <Form.Item label="id" name="id" initialValue={state.id}>
+                <Input disabled />
               </Form.Item>
-
-              <Form.Item
-                label="Email Address"
-                name="email"
-                rules={[{ message: 'Please input your email!', type: 'email' }]}
-              >
-                <Input placeholder="name@example.com" />
-              </Form.Item>
-
-              <Form.Item name="phone" label="Phone Number">
-                <Input placeholder="+440 2546 5236" />
-              </Form.Item>
-
-              <Form.Item name="designation" label="Position">
-                <Input placeholder="Input Position" />
-              </Form.Item>
-
-              <Form.Item name="company" label="Company Name">
-                <Input placeholder="Company Name" />
-              </Form.Item>
-
-              <Button htmlType="submit" size="default" type="primary" key="submit">
-                Add New Contact
-              </Button>
+              {usersTableData.map((user) => {
+                if (user.id === state.id) {
+                  return (
+                    <React.Fragment key={user.id}>
+                      <Form.Item label="Name" name="name" initialValue={user.name}>
+                        <Input
+                          value={userData.name}
+                          onChange={(e) =>
+                            setUserData({
+                              ...userData,
+                              name: e.target.value,
+                            })
+                          }
+                        />
+                      </Form.Item>
+                      <Form.Item label="Email" name="email" initialValue={user.email}>
+                        <Input
+                          value={userData.email}
+                          onChange={(e) =>
+                            setUserData({
+                              ...userData,
+                              email: e.target.value,
+                            })
+                          }
+                        />
+                      </Form.Item>
+                      <Form.Item label="Phone Number" name="phone" initialValue={user.phoneNumber}>
+                        <Input
+                          value={userData.phoneNumber}
+                          onChange={(e) =>
+                            setUserData({
+                              ...userData,
+                              phoneNumber: e.target.value,
+                            })
+                          }
+                        />
+                      </Form.Item>
+                      <Form.Item label="Company" name="company" initialValue={user.company}>
+                        <Input
+                          value={userData.company}
+                          onChange={(e) =>
+                            setUserData({
+                              ...userData,
+                              company: e.target.value,
+                            })
+                          }
+                        />
+                      </Form.Item>
+                      <Form.Item label="Position" name="position" initialValue={user.position}>
+                        <Input
+                          value={userData.position}
+                          onChange={(e) =>
+                            setUserData({
+                              ...userData,
+                              position: e.target.value,
+                            })
+                          }
+                        />
+                      </Form.Item>
+                      {/* <Button htmlType="submit" size="default" type="primary" key="submit">
+                        Submit
+                      </Button> */}
+                    </React.Fragment>
+                  );
+                }
+                return null;
+              })}
             </Form>
           </BasicFormWrapper>
         </div>
