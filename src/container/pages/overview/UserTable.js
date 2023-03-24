@@ -17,7 +17,10 @@ function UserListTable() {
   const [state, setState] = useState({});
   const [userData, setUserData] = useState({});
   // const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false);
+  // useEffect calling
+  // useEffect calling
   const showModal = (id) => {
     setState({
       ...state,
@@ -41,35 +44,7 @@ function UserListTable() {
     //   id: null,
     // });
   };
-  const handleFormSubmit = () => {
-    fetch(`http://localhost:5000/api/v2/users/${state.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(userData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.error === false) {
-          // navigate('/admin/users/dataTable');
-          message.info('admin user added successful');
-          setIsLoading(false);
-          onCancel();
-        } else {
-          setIsLoading(false);
-          message.info('error occcured fill all requird fields and try again');
-        }
-        // Handle response data
-      })
-      .catch((error) => {
-        console.error(error);
-        message.info('unknown error occcured');
-        setIsLoading(false);
-      });
-  };
-  useEffect(() => {
+  const handleRefresh = () => {
     fetch('http://localhost:5000/api/v2/users')
       .then((response) => response.json())
       .then((data) => {
@@ -99,7 +74,25 @@ function UserListTable() {
               <Button className="btn-icon" type="info" shape="circle" onClick={() => showModal(user.id)}>
                 <UilEdit />
               </Button>
-              <Button className="btn-icon" type="danger" to="#" shape="circle">
+              <Button
+                className="btn-icon"
+                type="danger"
+                shape="circle"
+                onClick={() => {
+                  fetch(`http://localhost:5000/api/v2/users/${user.id}`, {
+                    method: 'DELETE',
+                  })
+                    .then(() => {
+                      setUsersTableData(usersTableData.filter((item) => item.id !== user.id));
+                      message.success('User deleted successfully');
+                      handleRefresh();
+                    })
+                    .catch((error) => {
+                      console.error(error);
+                      message.error('An error occurred while deleting user');
+                    });
+                }}
+              >
                 <UilTrashAlt />
               </Button>
             </div>
@@ -107,7 +100,40 @@ function UserListTable() {
         }));
         setUsersTableData(formattedData);
       });
+  };
+  const handleFormSubmit = () => {
+    fetch(`http://localhost:5000/api/v2/users/${state.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.error === false) {
+          // navigate('/admin/users/dataTable');
+          message.info('admin user updated successful');
+          setIsLoading(false);
+          onCancel();
+          handleRefresh();
+        } else {
+          setIsLoading(false);
+          message.info('error occcured fill all requird fields and try again');
+        }
+        // Handle response data
+      })
+      .catch((error) => {
+        console.error(error);
+        message.info('unknown error occcured');
+        setIsLoading(false);
+      });
+  };
+  useEffect(() => {
+    handleRefresh();
   }, []);
+  // sdfyuiopiuyt
   const usersTableColumns = [
     {
       title: 'Id',
