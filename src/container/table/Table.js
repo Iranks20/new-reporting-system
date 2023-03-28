@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import { Row, Col } from 'antd';
+import { Row, Col, Select, message } from 'antd';
 import UilEye from '@iconscout/react-unicons/icons/uil-eye';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
-import DataTable from '../../components/table/DataTable';
+// import DataTable from '../../components/table/DataTable';
 import { Main, BorderLessHeading } from '../styled';
+import DataTable from '../../components/table/DataTable';
+import { Button } from '../../components/buttons/buttons';
 
 function Tables() {
   const [tableData, setTableData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('Daily');
 
   const PageRoutes = [
     {
@@ -22,20 +25,36 @@ function Tables() {
     },
   ];
 
-  useEffect(() => {
-    fetch('http://localhost:5000/api/v1/incidences')
-      .then((response) => response.json())
-      .then((data) => setTableData(data))
-      .catch((error) => console.log(error));
-  }, []);
+  const handleRefresher = () => {
+    let apiUrl = '';
+    if (selectedOption === 'Daily') {
+      apiUrl = 'http://localhost:5000/api/v1/incidences/daily';
+    } else if (selectedOption === 'Weekly') {
+      apiUrl = 'http://localhost:5000/api/v1/incidences/weekly';
+    } else if (selectedOption === 'Monthly') {
+      apiUrl = 'http://localhost:5000/api/v1/incidences/monthly';
+    } else if (selectedOption === 'All') {
+      apiUrl = 'http://localhost:5000/api/v1/incidences';
+    }
+
+    if (apiUrl !== '') {
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => setTableData(data))
+        .catch((error) => console.log(error));
+    }
+  };
+  const handleOptionChange = (value) => {
+    setSelectedOption(value);
+  };
 
   const tableDataScource = [];
 
   if (tableData.length > 0) {
     tableData.forEach((item) => {
-      const { id, incident, location, cordinates, byWho, toWhom, details, datetime } = item;
+      const { id, incident, location, cordinates, byWho, toWhom, details, datetime, status } = item;
       tableDataScource.push({
-        id: `#${id}`,
+        id: `${id}`,
         incident: <span className="ninjadash-username">{incident}</span>,
         location: <span className="ninjadash-username">{location}</span>,
         cordinates: <span>{cordinates}</span>,
@@ -43,16 +62,39 @@ function Tables() {
         toWhom,
         details,
         datetime,
+        status: <span className={`ninjadash-status ninjadash-status-${status}`}>{status}</span>,
         action: (
           <div className="table-actions">
-            <Link className="view" to="#">
+            <Button
+              className="btn-icon"
+              type="primary"
+              shape="circle"
+              onClick={() => {
+                fetch(`http://localhost:5000/api/v1/incidences/status/${id}`, {
+                  method: 'PUT',
+                })
+                  .then(() => {
+                    setTableData(tableData.filter((statu) => statu.id !== id));
+                    // message.success('Read updated successfully');
+                    handleRefresher();
+                    // handleRefresh();
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                    message.error('An error occurred while updatig Read');
+                  });
+              }}
+            >
               <UilEye />
-            </Link>
+            </Button>
           </div>
         ),
       });
     });
   }
+  useEffect(() => {
+    handleRefresher();
+  }, [selectedOption]);
 
   const dataTableColumn = [
     {
@@ -91,6 +133,11 @@ function Tables() {
       key: 'datetime',
     },
     {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+    },
+    {
       title: 'Actions',
       dataIndex: 'action',
       key: 'action',
@@ -106,6 +153,39 @@ function Tables() {
           <Col xs={24}>
             <BorderLessHeading>
               <Cards title="Reporters Table">
+                <Row gutter={15}>
+                  {/* <Col> */}
+                  {/* <div className="ninjadash-datatable-filter__input">
+                    <span className="label">Id:</span>
+                    <Input placeholder="Search with Id" />
+                  </div> */}
+                  {/* </Col> */}
+                  {/* <Col> */}
+                  <div className="ninjadash-datatable-filter__input">
+                    <span className="label">Actions:</span>
+                    <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
+                      <Select.Option value="Daily">Daily</Select.Option>
+                      <Select.Option value="Monthly">Monthly</Select.Option>
+                      <Select.Option value="Weekly">Weekly</Select.Option>
+                      <Select.Option value="All">All</Select.Option>
+                    </Select>
+                  </div>
+                  {/* </Col> */}
+                  {/* <Col> */}
+                  <div className="ninjadash-datatable-filter__input">
+                    <span className="label">Status:</span>
+                    <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
+                      <Select.Option value="Daily">UnRead</Select.Option>
+                      <Select.Option value="Monthly">Read</Select.Option>
+                    </Select>
+                  </div>
+                  {/* </Col> */}
+                  {/* <Col> */}
+                  {/* <div className="ninjadash-datatable-filter__right">
+                    <Input size="default" placeholder="Search" />
+                  </div> */}
+                  {/* </Col> */}
+                </Row>
                 <DataTable
                   filterOption
                   filterOnchange

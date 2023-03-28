@@ -63,18 +63,9 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
               <div className="ninjadash-datatable-filter__input">
                 <span className="label">Status:</span>
                 <Select onChange={handleStatusSearch} style={{ width: 200 }} defaultValue="active">
-                  <Select.Option value="active">Active</Select.Option>
-                  <Select.Option value="deactiveted">Deactivated</Select.Option>
-                  <Select.Option value="blocked">Blocked</Select.Option>
-                </Select>
-              </div>
-              <div className="ninjadash-datatable-filter__input">
-                <span className="label">Actions:</span>
-                <Select onChange={handleStatusSearch} style={{ width: 200 }} defaultValue="active">
-                  <Select.Option value="active">Daily</Select.Option>
-                  <Select.Option value="deactiveted">Weekly</Select.Option>
-                  <Select.Option value="blocked">Monthly</Select.Option>
-                  {/* <Select.Option value="blocked">All</Select.Option> */}
+                  <Select.Option value="UnRead">UnRead</Select.Option>
+                  <Select.Option value="Read">Read</Select.Option>
+                  {/* <Select.Option value="blocked">Blocked</Select.Option> */}
                 </Select>
               </div>
             </div>

@@ -2824,7 +2824,7 @@ const TableWrapper = Styled.div`
         padding: 0 8px;
         min-height: 24px;
         border-radius: 15px;
-        &.ninjadash-status-active{
+        &.ninjadash-status-UnRead{
             color: ${({ theme }) => theme['success-color']};
             background-color: ${({ theme }) => theme['success-color']}15;
         }
@@ -2832,7 +2832,7 @@ const TableWrapper = Styled.div`
             color: ${({ theme }) => theme['warning-color']};
             background-color: ${({ theme }) => theme['warning-color']}15;
         }
-        &.ninjadash-status-blocked{
+        &.ninjadash-status-Read{
             color: ${({ theme }) => theme['danger-color']};
             background-color: ${({ theme }) => theme['danger-color']}15;
         }
