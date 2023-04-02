@@ -7,7 +7,7 @@ import propTypes from 'prop-types';
 import { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { connect } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import MenueItems from './MenueItems';
 import { FooterStyle, LayoutContainer, SmallScreenAuthInfo, TopMenuSearch } from './Style';
@@ -123,7 +123,7 @@ const ThemeLayout = (WrappedComponent) => {
                   <div className="navbar-brand align-cener-v">
                     <Link
                       className={topMenu && window.innerWidth > 991 ? 'ninjadash-logo top-menu' : 'ninjadash-logo'}
-                      to="/admin"
+                      to="/admin/demo-2"
                     >
                       <img
                         src={
@@ -131,7 +131,7 @@ const ThemeLayout = (WrappedComponent) => {
                             ? require(`../static/img/logo_dark.svg`).default
                             : require(`../static/img/logo_white.svg`).default
                         }
-                        alt=""
+                        alt="Hexa inno"
                       />
                     </Link>
                     {!topMenu || window.innerWidth <= 991 ? (
@@ -215,16 +215,16 @@ const ThemeLayout = (WrappedComponent) => {
                     <Row>
                       <Col md={12} xs={24}>
                         <span className="admin-footer__copyright">
-                          © 2023<Link to="#">SovWare</Link>
+                          © 2023<Link to="#">case management</Link>
                         </span>
                       </Col>
-                      <Col md={12} xs={24}>
+                      {/* <Col md={12} xs={24}>
                         <div className="admin-footer__links">
                           <NavLink to="#">About</NavLink>
                           <NavLink to="#">Team</NavLink>
                           <NavLink to="#">Contact</NavLink>
                         </div>
-                      </Col>
+                      </Col> */}
                     </Row>
                   </FooterStyle>
                 </Content>

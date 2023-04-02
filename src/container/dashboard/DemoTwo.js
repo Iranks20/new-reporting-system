@@ -51,7 +51,7 @@ function DemoTwo() {
               <OverviewDataList />
             </Suspense>
           </Col>
-          <Col xs={24}>
+          {/* <Col xs={24}>
             <Suspense
               fallback={
                 <Cards headless>
@@ -61,7 +61,7 @@ function DemoTwo() {
             >
               <OverviewDataList />
             </Suspense>
-          </Col>
+          </Col> */}
         </Row>
       </Main>
     </>

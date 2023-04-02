@@ -123,9 +123,9 @@ function MenuItems({ toggleCollapsed }) {
       // ),
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/demo-2`}>
-          {t('demo')} {t('2')}
+          {t('Dashboard')}
         </NavLink>,
-        'dashboardd',
+        'dashboard',
         null,
       ),
       // getItem(
@@ -431,7 +431,7 @@ function MenuItems({ toggleCollapsed }) {
     //     </NavLink>
     //   ),
     // ),
-    getItem(t('users'), 'users', !topMenu && <UilUsersAlt />, [
+    getItem(t('Admin Users'), 'users', !topMenu && <UilUsersAlt />, [
       // getItem(
       //   <NavLink onClick={toggleCollapsed} to={`${path}/users/team`}>
       //     {t('team')}
@@ -469,7 +469,7 @@ function MenuItems({ toggleCollapsed }) {
       // ),
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/users/dataTable`}>
-          {t('users')} {t('table')}
+          {t('Users')}
         </NavLink>,
         'user-dataTable',
         null,
@@ -1087,17 +1087,17 @@ function MenuItems({ toggleCollapsed }) {
     //     null,
     //   ),
     // ]),
-    getItem(t('table'), 'table', !topMenu && <UilTable />, [
+    getItem(t('Incidences $ Reporters'), 'table', !topMenu && <UilTable />, [
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/tables/basic`}>
-          {t('basic')} {t('table')}
+          {t('Reporters')}
         </NavLink>,
         'basicTable',
         null,
       ),
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/tables/dataTable`}>
-          {t('data')} {t('table')}
+          {t('Incidences')}
         </NavLink>,
         'dataTable',
         null,

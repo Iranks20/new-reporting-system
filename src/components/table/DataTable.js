@@ -1,38 +1,38 @@
-import UilSearch from '@iconscout/react-unicons/icons/uil-search';
-import { Input, Select, Table } from 'antd';
+// import UilSearch from '@iconscout/react-unicons/icons/uil-search';
+import { Table } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { DataTableStyleWrap } from './Style';
 import { TableWrapper } from '../../container/styled';
-import { dataLiveFilter, filterWithSubmit } from '../../redux/data-filter/actionCreator';
-import { Button } from '../buttons/buttons';
+// import { dataLiveFilter, filterWithSubmit } from '../../redux/data-filter/actionCreator';
+// import { Button } from '../buttons/buttons';
 // import { Cards } from '../../components/cards/frame/cards-frame';
 
-function DataTable({ filterOption, filterOnchange, rowSelection, tableData, columns }) {
-  const dispatch = useDispatch();
-  const handleIdSearch = (e) => {
-    const id = e.currentTarget.value;
-    dispatch(dataLiveFilter(id, 'id'));
-  };
-  const handleStatusSearch = (value) => {
-    dispatch(dataLiveFilter(value, 'status'));
-  };
+function DataTable({ rowSelection, tableData, columns }) {
+  // const dispatch = useDispatch();
+  // const handleIdSearch = (e) => {
+  //   const id = e.currentTarget.value;
+  //   dispatch(dataLiveFilter(id, 'id'));
+  // };
+  // const handleStatusSearch = (value) => {
+  //   dispatch(dataLiveFilter(value, 'status'));
+  // };
 
-  const handleDataUser = (e) => {
-    const { value } = e.currentTarget;
-    dispatch(dataLiveFilter(value, 'name'));
-  };
+  // const handleDataUser = (e) => {
+  //   const { value } = e.currentTarget;
+  //   dispatch(dataLiveFilter(value, 'name'));
+  // };
 
-  const handleSearch = () => {
-    const id = document.querySelector('.ninjadash-data-id').value;
-    const status = document.querySelector('.ninjadash-data-status .ant-select-selection-item').title;
-    dispatch(filterWithSubmit(id, status));
-  };
-  const prefix = <UilSearch />;
+  // const handleSearch = () => {
+  //   const id = document.querySelector('.ninjadash-data-id').value;
+  //   const status = document.querySelector('.ninjadash-data-status .ant-select-selection-item').title;
+  //   dispatch(filterWithSubmit(id, status));
+  // };
+  // const prefix = <UilSearch />;
   return (
     <DataTableStyleWrap>
-      {filterOption ? (
+      {/* {filterOption ? (
         <div className="ninjadash-datatable-filter">
           {!filterOnchange ? (
             <div className="ninjadash-datatable-filter__left">
@@ -64,9 +64,9 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
                 <span className="label">Status:</span>
                 <Select onChange={handleStatusSearch} style={{ width: 200 }} defaultValue="active">
                   <Select.Option value="UnRead">UnRead</Select.Option>
-                  <Select.Option value="Read">Read</Select.Option>
-                  {/* <Select.Option value="blocked">Blocked</Select.Option> */}
-                </Select>
+                  <Select.Option value="Read">Read</Select.Option> */}
+      {/* <Select.Option value="blocked">Blocked</Select.Option> */}
+      {/* </Select>
               </div>
             </div>
           )}
@@ -76,7 +76,7 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
         </div>
       ) : (
         ''
-      )}
+      )} */}
       {/* isbutton={
         <div className="ninjadash-card-nav">
           <ul>
@@ -121,8 +121,8 @@ function DataTable({ filterOption, filterOnchange, rowSelection, tableData, colu
 }
 
 DataTable.propTypes = {
-  filterOption: PropTypes.bool,
-  filterOnchange: PropTypes.bool,
+  // filterOption: PropTypes.bool,
+  // filterOnchange: PropTypes.bool,
   rowSelection: PropTypes.bool,
   tableData: PropTypes.array,
   columns: PropTypes.array,

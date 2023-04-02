@@ -12,7 +12,9 @@ import { Button } from '../../components/buttons/buttons';
 
 function Tables() {
   const [tableData, setTableData] = useState([]);
+  // console.log(tableData);
   const [selectedOption, setSelectedOption] = useState('Daily');
+  console.log(selectedOption);
 
   const PageRoutes = [
     {
@@ -152,8 +154,8 @@ function Tables() {
         <Row gutter={15}>
           <Col xs={24}>
             <BorderLessHeading>
-              <Cards title="Reporters Table">
-                <Row gutter={15}>
+              <Cards title="Incidence Table">
+                <Row>
                   {/* <Col> */}
                   {/* <div className="ninjadash-datatable-filter__input">
                     <span className="label">Id:</span>
@@ -172,7 +174,7 @@ function Tables() {
                   </div>
                   {/* </Col> */}
                   {/* <Col> */}
-                  <div className="ninjadash-datatable-filter__input">
+                  <div className="ninjadash-datatable-filter__input" width="1000px">
                     <span className="label">Status:</span>
                     <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
                       <Select.Option value="Daily">UnRead</Select.Option>

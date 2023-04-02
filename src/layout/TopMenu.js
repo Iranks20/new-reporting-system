@@ -72,11 +72,11 @@ function TopMenu() {
                   Demo 1
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to={`${path}/demo-2`} onClick={addParentActive}>
                   Demo 2
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to={`${path}/demo-3`} onClick={addParentActive}>
                   Demo 3
