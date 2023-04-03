@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, message, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
-// import { ToastContainer, toast } from 'react-toastify';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
@@ -10,6 +9,7 @@ function Info() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [isFormFilled, setIsFormFilled] = useState(false);
 
   const handleSubmit = async (values) => {
     setIsLoading(true);
@@ -30,59 +30,78 @@ function Info() {
       console.log('API response:', data);
       setIsLoading(false);
       message.info('Admin user added successfully');
-      // toast('API response:', data);
       navigate('/admin/users/dataTable');
-
-      // TODO: handle success or error state
     } catch (error) {
       console.error('API error:', error);
-      // TODO: handle error state
       setIsLoading(false);
       message.info('Fill the required fields or else internal server error');
-      // toast('API error:', error);
     }
+  };
+
+  const handleFormChange = () => {
+    const isFieldsFilled = form.getFieldsError().filter(({ errors }) => errors.length).length === 0;
+    setIsFormFilled(isFieldsFilled);
   };
 
   return (
     <Row justify="center">
-      {/* <ToastContainer /> */}
       <Col xxl={10} xl={14} md={16} xs={24}>
         <div className="user-info-form">
           <BasicFormWrapper>
-            <Form style={{ width: '100%' }} form={form} name="info" onFinish={handleSubmit}>
+            <Form style={{ width: '100%' }} form={form} name="info" onFinish={handleSubmit} onChange={handleFormChange}>
               <Heading className="form-title" as="h4">
                 Personal Information
               </Heading>
 
-              <Form.Item label="Name" name="name">
+              <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input your name!' }]}>
                 <Input placeholder="Input Name" />
               </Form.Item>
 
               <Form.Item
                 label="Email Address"
                 name="email"
-                rules={[{ message: 'Please input your email!', type: 'email' }]}
+                rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
               >
                 <Input placeholder="name@example.com" />
               </Form.Item>
 
-              <Form.Item name="phoneNumber" label="PhoneNumber">
+              <Form.Item
+                name="phoneNumber"
+                label="PhoneNumber"
+                rules={[{ required: true, message: 'Please input your phone number!' }]}
+              >
                 <Input placeholder="+440 2546 5236" />
               </Form.Item>
 
-              <Form.Item name="password" label="Password">
+              <Form.Item
+                name="password"
+                label="Password"
+                rules={[{ required: true, message: 'Please input your password!' }]}
+              >
                 <Input placeholder="UFHhdbd2000" />
               </Form.Item>
 
-              <Form.Item name="company" label="Company">
+              <Form.Item
+                name="company"
+                label="Company"
+                rules={[{ required: true, message: 'Please input your Compony name!' }]}
+              >
                 <Input placeholder="Company name" />
               </Form.Item>
 
-              <Form.Item name="position" label="Position">
+              <Form.Item
+                name="position"
+                label="Position"
+                rules={[{ required: true, message: 'Please input your postion!' }]}
+              >
                 <Input placeholder="Position" />
               </Form.Item>
 
-              <Form.Item name="nationality" label="nationality">
+              <Form.Item
+                name="nationality"
+                label="nationality"
+                rules={[{ required: true, message: 'Please input your Nationality!' }]}
+              >
                 <Input placeholder="Nationality" />
               </Form.Item>
 
@@ -96,7 +115,7 @@ function Info() {
                   >
                     Reset
                   </Button>
-                  <Button htmlType="submit" type="primary" disabled={isLoading}>
+                  <Button htmlType="submit" type="primary" disabled={!isFormFilled || isLoading}>
                     Submit
                   </Button>
                 </div>

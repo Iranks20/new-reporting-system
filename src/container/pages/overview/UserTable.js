@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { useSelector } from 'react-redux';
 import { Table, Form, Input, message } from 'antd';
 // import { useNavigate } from 'react-router-dom';
-import UilEye from '@iconscout/react-unicons/icons/uil-eye';
+// import UilEye from '@iconscout/react-unicons/icons/uil-eye';
 import UilEdit from '@iconscout/react-unicons/icons/uil-edit';
 import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 import { UserTableStyleWrapper } from '../style';
@@ -68,9 +68,9 @@ function UserListTable() {
           datetime: user.datetime,
           action: (
             <div className="table-actions">
-              <Button className="btn-icon" type="primary" to="#" shape="circle">
+              {/* <Button className="btn-icon" type="primary" to="#" shape="circle">
                 <UilEye />
-              </Button>
+              </Button> */}
               <Button className="btn-icon" type="info" shape="circle" onClick={() => showModal(user.id)}>
                 <UilEdit />
               </Button>
@@ -183,19 +183,19 @@ function UserListTable() {
     },
   ];
 
-  const rowSelection = {
-    getCheckboxProps: (record) => ({
-      disabled: record.name === 'Disabled User', // Column configuration not to be checked
-      name: record.name,
-    }),
-  };
+  // const rowSelection = {
+  //   getCheckboxProps: (record) => ({
+  //     disabled: record.name === 'Disabled User', // Column configuration not to be checked
+  //     name: record.name,
+  //   }),
+  // };
 
   return (
     <Cards headless>
       <UserTableStyleWrapper>
         <TableWrapper className="table-responsive">
           <Table
-            rowSelection={rowSelection}
+            // rowSelection={rowSelection}
             dataSource={usersTableData}
             columns={usersTableColumns}
             pagination={{
