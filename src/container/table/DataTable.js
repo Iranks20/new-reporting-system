@@ -17,7 +17,7 @@ function Tables() {
   const PageRoutes = [
     {
       path: 'index',
-      breadcrumbName: 'Dashboard',
+      breadcrumbName: 'Main',
     },
     {
       path: 'first',
@@ -28,13 +28,13 @@ function Tables() {
   const handleRefresher = () => {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters/daily';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters/weekly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters/monthly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters';
     }
 
     if (apiUrl !== '') {
@@ -54,9 +54,9 @@ function Tables() {
     tableData.forEach((item) => {
       const { id, firstName, lastName, email, sex, phoneNumber, datetime, status } = item;
       tableDataScource.push({
-        id: `#${id}`,
-        first_name: <span className="ninjadash-username">{firstName}</span>,
-        last_name: <span className="ninjadash-username">{lastName}</span>,
+        id: `${id}`,
+        firstName: <span className="ninjadash-username">{firstName}</span>,
+        lastName: <span className="ninjadash-username">{lastName}</span>,
         email: <span>{email}</span>,
         sex: <span>{sex}</span>,
         phone_number: phoneNumber,
@@ -69,7 +69,7 @@ function Tables() {
               type="primary"
               shape="circle"
               onClick={() => {
-                fetch(`http://localhost:5000/api/v1/reporters/status/${id}`, {
+                fetch(`http://100.25.26.230:5000/api/v1/reporters/status/${id}`, {
                   method: 'PUT',
                 })
                   .then(() => {
@@ -164,8 +164,8 @@ function Tables() {
                     <span className="label">Actions:</span>
                     <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
                       <Select.Option value="Daily">Daily</Select.Option>
-                      <Select.Option value="Monthly">Monthly</Select.Option>
                       <Select.Option value="Weekly">Weekly</Select.Option>
+                      <Select.Option value="Monthly">Monthly</Select.Option>
                       <Select.Option value="All">All</Select.Option>
                     </Select>
                   </div>

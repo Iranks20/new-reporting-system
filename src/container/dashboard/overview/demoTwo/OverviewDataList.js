@@ -15,49 +15,49 @@ const OverviewDataList = React.memo(() => {
 
   useEffect(() => {
     const fetchDailyTotal = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/incidences/dailycounts');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/incidences/dailycounts');
       const data = await response.json();
       setDailyTotal(data[0].total);
     };
 
     const fetchWeeklyTotal = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/incidences/weeklycounts');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/incidences/weeklycounts');
       const data = await response.json();
       setWeeklyTotal(data[0].total);
     };
 
     const fetchMonthlyTotal = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/incidences/monthlycounts');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/incidences/monthlycounts');
       const data = await response.json();
       setMonthlyTotal(data[0].total);
     };
 
     const fetchAllTotal = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/incidences/countall');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/incidences/countall');
       const data = await response.json();
       setAllTotal(data[0].total);
     };
 
     const fetchDailyReporters = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/reporters/dailycounts');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/reporters/dailycounts');
       const data = await response.json();
       setDailyReporters(data[0].total);
     };
 
     const fetchWeeklyReporters = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/reporters/weeklycounts');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/reporters/weeklycounts');
       const data = await response.json();
       setWeeklyReporters(data[0].total);
     };
 
     const fetchMonthlyReporters = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/reporters/monthlycounts');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/reporters/monthlycounts');
       const data = await response.json();
       setMonthlyReporters(data[0].total);
     };
 
     const fetchAllReporters = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/reporters/allreporters');
+      const response = await fetch('http://100.25.26.230:5000/api/v1/reporters/allreporters');
       const data = await response.json();
       setAllReporters(data[0].total);
     };

@@ -1090,14 +1090,14 @@ function MenuItems({ toggleCollapsed }) {
     getItem(t('Incidences $ Reporters'), 'table', !topMenu && <UilTable />, [
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/tables/basic`}>
-          {t('Reporters')}
+          {t('Incidences')}
         </NavLink>,
         'basicTable',
         null,
       ),
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/tables/dataTable`}>
-          {t('Incidences')}
+          {t('Reporters')}
         </NavLink>,
         'dataTable',
         null,

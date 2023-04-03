@@ -45,7 +45,7 @@ function UserListTable() {
     // });
   };
   const handleRefresh = () => {
-    fetch('http://localhost:5000/api/v2/users')
+    fetch('http://100.25.26.230:5000/api/v2/users')
       .then((response) => response.json())
       .then((data) => {
         const formattedData = data.map((user) => ({
@@ -79,7 +79,7 @@ function UserListTable() {
                 type="danger"
                 shape="circle"
                 onClick={() => {
-                  fetch(`http://localhost:5000/api/v2/users/${user.id}`, {
+                  fetch(`http://100.25.26.230:5000/api/v2/users/${user.id}`, {
                     method: 'DELETE',
                   })
                     .then(() => {
@@ -102,7 +102,7 @@ function UserListTable() {
       });
   };
   const handleFormSubmit = () => {
-    fetch(`http://localhost:5000/api/v2/users/${state.id}`, {
+    fetch(`http://100.25.26.230:5000/api/v2/users/${state.id}`, {
       method: 'PUT',
       body: JSON.stringify(userData),
       headers: {

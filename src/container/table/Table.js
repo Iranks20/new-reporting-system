@@ -19,7 +19,7 @@ function Tables() {
   const PageRoutes = [
     {
       path: 'index',
-      breadcrumbName: 'Dashboard',
+      breadcrumbName: 'Main',
     },
     {
       path: 'first',
@@ -30,13 +30,13 @@ function Tables() {
   const handleRefresher = () => {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences/daily';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences/weekly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences/monthly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences';
     }
 
     if (apiUrl !== '') {
@@ -62,7 +62,7 @@ function Tables() {
         cordinates: <span>{cordinates}</span>,
         byWho: <span>{byWho}</span>,
         toWhom,
-        details,
+        details: <span>{details}</span>,
         datetime,
         status: <span className={`ninjadash-status ninjadash-status-${status}`}>{status}</span>,
         action: (
@@ -72,7 +72,7 @@ function Tables() {
               type="primary"
               shape="circle"
               onClick={() => {
-                fetch(`http://localhost:5000/api/v1/incidences/status/${id}`, {
+                fetch(`http://100.25.26.230:5000/api/v1/incidences/status/${id}`, {
                   method: 'PUT',
                 })
                   .then(() => {
@@ -105,7 +105,7 @@ function Tables() {
       key: 'id',
     },
     {
-      title: 'Incdent',
+      title: 'Incident',
       dataIndex: 'incident',
       key: 'incident',
     },
@@ -130,6 +130,11 @@ function Tables() {
       key: 'toWhom',
     },
     {
+      title: 'Details',
+      dataIndex: 'details',
+      key: 'details',
+    },
+    {
       title: 'Date $ Time',
       dataIndex: 'datetime',
       key: 'datetime',
@@ -149,7 +154,7 @@ function Tables() {
 
   return (
     <>
-      <PageHeader className="ninjadash-page-header-main" title="Reporters" routes={PageRoutes} />
+      <PageHeader className="ninjadash-page-header-main" title="Incidnces" routes={PageRoutes} />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
@@ -167,8 +172,8 @@ function Tables() {
                     <span className="label">Actions:</span>
                     <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
                       <Select.Option value="Daily">Daily</Select.Option>
-                      <Select.Option value="Monthly">Monthly</Select.Option>
                       <Select.Option value="Weekly">Weekly</Select.Option>
+                      <Select.Option value="Monthly">Monthly</Select.Option>
                       <Select.Option value="All">All</Select.Option>
                     </Select>
                   </div>
