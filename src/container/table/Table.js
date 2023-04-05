@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 import { Row, Col, Select, message } from 'antd';
 import UilEye from '@iconscout/react-unicons/icons/uil-eye';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 // import DataTable from '../../components/table/DataTable';
@@ -30,13 +30,13 @@ function Tables() {
   const handleRefresher = () => {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/daily';
+      apiUrl = 'http://localhost:5000/api/v1/incidences/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/weekly';
+      apiUrl = 'http://localhost:5000/api/v1/incidences/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/monthly';
+      apiUrl = 'http://localhost:5000/api/v1/incidences/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences';
+      apiUrl = 'http://localhost:5000/api/v1/incidences';
     }
 
     if (apiUrl !== '') {
@@ -72,7 +72,7 @@ function Tables() {
               type="primary"
               shape="circle"
               onClick={() => {
-                fetch(`http://100.25.26.230:5000/api/v1/incidences/status/${id}`, {
+                fetch(`http://localhost:5000/api/v1/incidences/status/${id}`, {
                   method: 'PUT',
                 })
                   .then(() => {
@@ -87,7 +87,9 @@ function Tables() {
                   });
               }}
             >
-              <UilEye />
+              <Link to="/admin/users/add-user/work">
+                <UilEye />
+              </Link>
             </Button>
           </div>
         ),

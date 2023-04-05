@@ -16,7 +16,7 @@ const Social = lazy(() => import('../pages/overview/Social'));
 function AddNew() {
   return (
     <>
-      <PageHeader className="ninjadash-page-header-main" ghost title="Add User" />
+      <PageHeader className="ninjadash-page-header-main" ghost title="" />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
@@ -28,7 +28,7 @@ function AddNew() {
                       <li>
                         <NavLink to="./info">
                           <UilUser />
-                          Personal Info
+                          Info
                         </NavLink>
                       </li>
                       {/* <li>
