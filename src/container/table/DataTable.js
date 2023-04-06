@@ -28,13 +28,13 @@ function Tables() {
   const handleRefresher = () => {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters/daily';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters/weekly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters/monthly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://localhost:5000/api/v1/reporters';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters';
     }
 
     if (apiUrl !== '') {
@@ -69,7 +69,7 @@ function Tables() {
               type="primary"
               shape="circle"
               onClick={() => {
-                fetch(`http://localhost:5000/api/v1/reporters/status/${id}`, {
+                fetch(`http://100.25.26.230:5000/api/v1/reporters/status/${id}`, {
                   method: 'PUT',
                 })
                   .then(() => {

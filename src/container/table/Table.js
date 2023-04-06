@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import { Row, Col, Select, message } from 'antd';
-import UilEye from '@iconscout/react-unicons/icons/uil-eye';
+import { Row, Col, Select } from 'antd';
+// import UilEye from '@iconscout/react-unicons/icons/uil-eye';
+import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 // import DataTable from '../../components/table/DataTable';
 import { Main, BorderLessHeading } from '../styled';
 import DataTable from '../../components/table/DataTable';
-import { Button } from '../../components/buttons/buttons';
+import { Dropdown } from '../../components/dropdown/dropdown';
+// import { Button } from '../../components/buttons/buttons';
 
 function Tables() {
   const [tableData, setTableData] = useState([]);
@@ -30,13 +32,13 @@ function Tables() {
   const handleRefresher = () => {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences/daily';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences/weekly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences/monthly';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://localhost:5000/api/v1/incidences';
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences';
     }
 
     if (apiUrl !== '') {
@@ -54,7 +56,7 @@ function Tables() {
 
   if (tableData.length > 0) {
     tableData.forEach((item) => {
-      const { id, incident, location, cordinates, byWho, toWhom, details, datetime, status } = item;
+      const { id, incident, location, cordinates, byWho, toWhom, datetime, status } = item;
       tableDataScource.push({
         id: `${id}`,
         incident: <span className="ninjadash-username">{incident}</span>,
@@ -62,37 +64,53 @@ function Tables() {
         cordinates: <span>{cordinates}</span>,
         byWho: <span>{byWho}</span>,
         toWhom,
-        details: <span>{details}</span>,
+        // details: <span>{details}</span>,
         datetime,
         status: <span className={`ninjadash-status ninjadash-status-${status}`}>{status}</span>,
         action: (
-          <div className="table-actions">
-            <Button
-              className="btn-icon"
-              type="primary"
-              shape="circle"
-              onClick={() => {
-                fetch(`http://localhost:5000/api/v1/incidences/status/${id}`, {
-                  method: 'PUT',
-                })
-                  .then(() => {
-                    setTableData(tableData.filter((statu) => statu.id !== id));
-                    // message.success('Read updated successfully');
-                    handleRefresher();
-                    // handleRefresh();
-                  })
-                  .catch((error) => {
-                    console.error(error);
-                    message.error('An error occurred while updatig Read');
-                  });
-              }}
-            >
-              <Link to="/admin/users/add-user/work">
-                <UilEye />
-              </Link>
-            </Button>
-          </div>
+          <Dropdown
+            className="wide-dropdwon"
+            content={
+              <>
+                <Link to={`/admin/users/add-user/work?id=${id}`}>View Details</Link>
+                {/* <Link to="#">Edit</Link>
+                <Link to="#">Delete</Link> */}
+              </>
+            }
+          >
+            <Link to="#">
+              <UilEllipsisH />
+            </Link>
+          </Dropdown>
         ),
+        // action: (
+        //   <div className="table-actions">
+        //     <Button
+        //       className="btn-icon"
+        //       type="primary"
+        //       shape="circle"
+        //       onClick={() => {
+        //         fetch(`http://100.25.26.230:5000/api/v1/incidences/status/${id}`, {
+        //           method: 'PUT',
+        //         })
+        //           .then(() => {
+        //             setTableData(tableData.filter((statu) => statu.id !== id));
+        //             // message.success('Read updated successfully');
+        //             handleRefresher();
+        //             // handleRefresh();
+        //           })
+        //           .catch((error) => {
+        //             console.error(error);
+        //             message.error('An error occurred while updatig Read');
+        //           });
+        //       }}
+        //     >
+        //       <Link to={`/admin/users/add-user/work?id=${id}`}>
+        //         <UilEye />
+        //       </Link>
+        //     </Button>
+        //   </div>
+        // ),
       });
     });
   }
@@ -131,11 +149,11 @@ function Tables() {
       dataIndex: 'toWhom',
       key: 'toWhom',
     },
-    {
-      title: 'Details',
-      dataIndex: 'details',
-      key: 'details',
-    },
+    // {
+    //   title: 'Details',
+    //   dataIndex: 'details',
+    //   key: 'details',
+    // },
     {
       title: 'Date $ Time',
       dataIndex: 'datetime',
