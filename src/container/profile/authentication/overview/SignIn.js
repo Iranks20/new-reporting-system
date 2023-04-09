@@ -1,55 +1,34 @@
-// import UilFacebook from '@iconscout/react-unicons/icons/uil-facebook-f';
-// import UilGithub from '@iconscout/react-unicons/icons/uil-github';
-// import UilTwitter from '@iconscout/react-unicons/icons/uil-twitter';
-import { Button, Col, Form, Input, Row } from 'antd';
-import { Auth0Lock } from 'auth0-lock';
-import React, { useCallback, useState } from 'react';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { Button, Col, Form, Input, message, Row } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
-// import { Link, NavLink, useNavigate } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
-// import { ReactSVG } from 'react-svg';
 import { AuthFormWrap } from './style';
-import { Checkbox } from '../../../../components/checkbox/checkbox';
-import { auth0options } from '../../../../config/auth0';
-import { login } from '../../../../redux/authentication/actionCreator';
-
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 function SignIn() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.auth.loading);
   const [form] = Form.useForm();
-  const [state, setState] = useState({
-    checked: null,
-  });
+  const navigate = useNavigate();
 
-  const lock = new Auth0Lock(clientId, domain, auth0options);
+  const onFinish = async (values) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/v3/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
 
-  const handleSubmit = useCallback(
-    (values) => {
-      dispatch(login(values, () => navigate('/admin/demo-2')));
-    },
-    [navigate, dispatch],
-  );
+      const data = await response.json();
 
-  const onChange = (checked) => {
-    setState({ ...state, checked });
-  };
-
-  lock.on('authenticated', (authResult) => {
-    lock.getUserInfo(authResult.accessToken, (error) => {
-      if (error) {
-        return;
+      if (response.ok) {
+        message.success('Login successful!');
+        navigate('/admin/demo-2');
+      } else {
+        message.error(data.message || 'Login failed. Check your credentials and Please try again.');
       }
-
-      handleSubmit();
-      lock.hide();
-    });
-  });
+    } catch (error) {
+      console.error('Login error:', error);
+      message.error('Login failed. Please try again.');
+    }
+  };
 
   return (
     <Row justify="center">
@@ -59,67 +38,35 @@ function SignIn() {
             <h2 className="ninjadash-authentication-top__title">Sign in Admin</h2>
           </div>
           <div className="ninjadash-authentication-content">
-            <Form name="login" form={form} onFinish={handleSubmit} layout="vertical">
+            <Form form={form} layout="vertical" onFinish={onFinish}>
               <Form.Item
                 name="email"
-                rules={[{ message: 'Please input your username or Email!', required: true }]}
+                rules={[{ required: true, message: 'Please input your email' }]}
                 initialValue="ninjadash@dm.com"
-                label="Username or Email Address"
+                label="Email Address"
               >
                 <Input placeholder="name@example.com" />
               </Form.Item>
-              <Form.Item name="password" initialValue="123456" label="Password">
+              <Form.Item
+                name="password"
+                rules={[{ required: true, message: 'Please input your password' }]}
+                initialValue="123456"
+                label="Password"
+              >
                 <Input.Password placeholder="Password" />
               </Form.Item>
               <div className="ninjadash-auth-extra-links">
-                <Checkbox onChange={onChange} checked={state.checked}>
-                  Keep me logged in
-                </Checkbox>
                 <NavLink className="forgot-pass-link" to="/forgotPassword">
                   Forgot password?
                 </NavLink>
               </div>
               <Form.Item>
                 <Button className="btn-signin" htmlType="submit" type="primary" size="large">
-                  {isLoading ? 'Loading...' : 'Sign In'}
+                  Sign In
                 </Button>
               </Form.Item>
-              <p className="ninjadash-form-divider">.</p>
-              {/* <ul className="ninjadash-social-login">
-                <li>
-                  <Link className="google-social" to="#">
-                    <ReactSVG src={require(`../../../../static/img/icon/google-plus.svg`).default} />
-                  </Link>
-                </li>
-                <li>
-                  <Link className="facebook-social" to="#">
-                    <UilFacebook />
-                  </Link>
-                </li>
-                <li>
-                  <Link className="twitter-social" to="#">
-                    <UilTwitter />
-                  </Link>
-                </li>
-                <li>
-                  <Link className="github-social" to="#">
-                    <UilGithub />
-                  </Link>
-                </li>
-              </ul> */}
-              {/* <div className="auth0-login">
-                <Link to="#" onClick={() => lock.show()}>
-                  SignIn with Auth0
-                </Link>
-                <Link to="/fbSignIn">SignIn With Firebase</Link>
-              </div> */}
             </Form>
           </div>
-          {/* <div className="ninjadash-authentication-bottom">
-            <p>
-              Don`t have an account?<Link to="/register">Sign up</Link>
-            </p>
-          </div> */}
         </AuthFormWrap>
       </Col>
     </Row>

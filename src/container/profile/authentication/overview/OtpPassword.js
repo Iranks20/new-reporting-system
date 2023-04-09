@@ -4,26 +4,27 @@ import { Form, Input, Button, Row, Col, message } from 'antd';
 import axios from 'axios';
 import { AuthFormWrap } from './style';
 
-function ForgotPassword() {
+function OtpPassword() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const email = localStorage.getItem('email');
+  // const [isEmailDisabled, setIsEmailDisabled] = useState(true);
 
   const onFinish = (values) => {
     axios
-      .post('http://localhost:5000/api/v3/forgot-password', values)
+      .post('http://localhost:5000/api/v3/verify-otp', { ...values, email })
       .then((res) => {
         if (res.status === 200) {
           console.log(res);
-          message.success('otp sent to your email');
-          localStorage.setItem('email', values.email); // store email in local storage
-          navigate('/otppassword');
+          message.success('OTP verification successful');
+          navigate('/changepassword');
         } else {
-          message.error('invalid email');
+          message.error('Invalid OTP');
         }
       })
       .catch((err) => {
         console.log(err);
-        message.error('failed to send otp');
+        message.error('Failed to verify OTP');
       });
   };
 
@@ -31,30 +32,38 @@ function ForgotPassword() {
     <Row justify="center">
       <Col xxl={6} xl={8} md={12} sm={18} xs={24}>
         <AuthFormWrap>
-          <Form name="forgotPass" form={form} layout="vertical" onFinish={onFinish}>
+          <Form name="otp" form={form} layout="vertical" onFinish={onFinish}>
             <div className="ninjadash-authentication-top">
               <h2 className="ninjadash-authentication-top__title">Forgot Password?</h2>
             </div>
             <div className="ninjadash-authentication-content">
               <p className="forgot-text">
-                Enter the email address you used when you joined and we’ll send you instructions to reset your password.
+                We have sent an One-Time Password (OTP) to your email for resetting password
               </p>
               <Form.Item
-                label="Email Address"
                 name="email"
+                label="Email Address"
+                initialValue={email}
                 rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
               >
-                <Input placeholder="name@example.com" />
+                <Input placeholder="Email" disabled />
+              </Form.Item>
+              <Form.Item
+                name="otp"
+                label="OTP"
+                rules={[{ required: true, message: 'Please input OTP sent to your email!' }]}
+              >
+                <Input placeholder="Enter OTP" />
               </Form.Item>
               <Form.Item>
                 <Button className="btn-reset" htmlType="submit" type="primary" size="large">
-                  Send Reset Instructions
+                  Verify OTP
                 </Button>
               </Form.Item>
             </div>
             <div className="ninjadash-authentication-bottom">
               <p className="return-text">
-                Return to <Link to="/otppassword">Sign In</Link>
+                Return to <Link to="/changepassword">Sign In</Link>
               </p>
             </div>
           </Form>
@@ -64,4 +73,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default OtpPassword;
