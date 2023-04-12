@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Row, Col, message } from 'antd';
 import axios from 'axios';
 import { AuthFormWrap } from './style';
@@ -12,7 +12,7 @@ function OtpPassword() {
 
   const onFinish = (values) => {
     axios
-      .post('http://localhost:5000/api/v3/verify-otp', { ...values, email })
+      .post('http://100.25.26.230:5000/api/v3/verify-otp', { ...values, email })
       .then((res) => {
         if (res.status === 200) {
           console.log(res);
@@ -61,11 +61,11 @@ function OtpPassword() {
                 </Button>
               </Form.Item>
             </div>
-            <div className="ninjadash-authentication-bottom">
+            {/* <div className="ninjadash-authentication-bottom">
               <p className="return-text">
                 Return to <Link to="/changepassword">Sign In</Link>
               </p>
-            </div>
+            </div> */}
           </Form>
         </AuthFormWrap>
       </Col>

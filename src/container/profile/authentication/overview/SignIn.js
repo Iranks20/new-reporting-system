@@ -8,7 +8,7 @@ function SignIn() {
 
   const onFinish = async (values) => {
     try {
-      const response = await fetch('http://localhost:5000/api/v3/login', {
+      const response = await fetch('http://100.25.26.230:5000/api/v3/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ function SignIn() {
 
       if (response.ok) {
         message.success('Login successful!');
-        navigate('/admin/demo-2');
+        navigate('/admin');
       } else {
         message.error(data.message || 'Login failed. Check your credentials and Please try again.');
       }
@@ -42,7 +42,7 @@ function SignIn() {
               <Form.Item
                 name="email"
                 rules={[{ required: true, message: 'Please input your email' }]}
-                initialValue="ninjadash@dm.com"
+                placeholder="ninjadash@dm.com"
                 label="Email Address"
               >
                 <Input placeholder="name@example.com" />

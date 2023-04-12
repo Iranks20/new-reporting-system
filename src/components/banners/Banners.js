@@ -354,9 +354,9 @@ function PageHeaderBanner({ type, title, subtitle }) {
           <figcaption>
             <h2 className="ninjadash-top-banner__title">{title}</h2>
             <p className="ninjadash-top-banner__text">{subtitle}</p>
-            <Button className="ninjadash-top-banner__action" size="large" type="primary">
+            {/* <Button className="ninjadash-top-banner__action" size="large" type="primary">
               Learn More
-            </Button>
+            </Button> */}
           </figcaption>
         </PageHeader>
       </Cards>

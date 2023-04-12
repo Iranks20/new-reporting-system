@@ -3,7 +3,7 @@ import 'antd/dist/antd.less';
 import React, { useEffect, useState, lazy } from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { isLoaded, ReactReduxFirebaseProvider } from 'react-redux-firebase';
-import { HashRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import SimpleReactLightbox from 'simple-react-lightbox';
 import { ThemeProvider } from 'styled-components';
@@ -11,8 +11,8 @@ import ProtectedRoute from './components/utilities/protectedRoute';
 import config from './config/config';
 import store, { rrfProps } from './redux/store';
 
-// import Admin from './routes/admin';
-import DemoTwo from './routes/admin';
+import Admin from './routes/admin';
+// import DemoTwo from './routes/admin';
 import Auth from './routes/auth';
 import './static/css/style.css';
 
@@ -52,14 +52,15 @@ function ProviderConfig() {
             </div>
           ) : (
             <SimpleReactLightbox>
-              <Router>
+              <HashRouter>
                 {!isLoggedIn ? (
                   <Routes>
                     <Route path="/*" element={<Auth />} />
+                    <Route path="/admin*" element={<Admin />} />
                   </Routes>
                 ) : (
                   <Routes>
-                    <Route path="/admin*" element={<ProtectedRoute path="/*" Component={DemoTwo} />} />
+                    <Route path="/admin*" element={<ProtectedRoute path="/*" Component={Admin} />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 )}
@@ -68,7 +69,7 @@ function ProviderConfig() {
                     <Route path="/" element={<Navigate to="/admin/demo-2" />} />
                   </Routes>
                 )}
-              </Router>
+              </HashRouter>
             </SimpleReactLightbox>
           )}
         </ReactReduxFirebaseProvider>

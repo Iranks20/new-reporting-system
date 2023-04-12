@@ -34,9 +34,8 @@ function DemoTwo() {
             >
               <PageHeaderBanner
                 type="corporate"
-                title="Hey! Welcome to the Admin Dashboard"
-                subtitle="There are many variations of passages of Lorem Ipsum available,
-                ut the majority have suffered passages of Lorem Ipsum available alteration in some form"
+                title="Welcome to the Admin Dashboard"
+                subtitle="Ths dashboard provides a daily summary of incident and reporter counts. It enables users to quickly view the number of incidences that occurred during a given day, as well as the number of reporters who filed those incidences"
               />
             </Suspense>
           </Col>

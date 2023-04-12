@@ -14,7 +14,7 @@ function Info() {
   const handleSubmit = async (values) => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://100.25.26.230:5000/api/v2/users', {
+      const response = await fetch('http://localhost:5000/api/v2/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Row, Col } from 'antd';
 import axios from 'axios';
 import { AuthFormWrap } from './style';
@@ -14,7 +14,7 @@ function ChangePassword() {
     const email = localStorage.getItem('email');
     const data = { ...values, email };
     try {
-      const response = await axios.post('http://localhost:5000/api/v3/update-password', data);
+      const response = await axios.post('http://100.25.26.230:5000/api/v3/update-password', data);
       if (response.status === 200) {
         setLoading(false);
         setSuccess(true);
@@ -54,11 +54,11 @@ function ChangePassword() {
                 </Button>
               </Form.Item>
             </div>
-            <div className="ninjadash-authentication-bottom">
+            {/* <div className="ninjadash-authentication-bottom">
               <p className="return-text">
                 Return to <Link to="/">Sign In</Link>
               </p>
-            </div>
+            </div> */}
           </Form>
         </AuthFormWrap>
       </Col>
