@@ -13,14 +13,17 @@ function Info() {
 
   const handleSubmit = async (values) => {
     setIsLoading(true);
+    console.log('inno');
     try {
-      const response = await fetch('http://localhost:5000/api/v2/users', {
+      const response = await fetch('http://100.25.26.230:5000/api/v3/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
       });
+      console.log(values);
+      console.log('waaaaa');
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

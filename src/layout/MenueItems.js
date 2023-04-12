@@ -70,13 +70,13 @@ function MenuItems({ toggleCollapsed }) {
 
   const items = [
     getItem(t('dashboard'), 'dashboard', !topMenu && <UilCreateDashboard />, [
-      // getItem(
-      //   <NavLink onClick={toggleCollapsed} to={`${path}/demo-2`}>
-      //     {t('Dashboard')}
-      //   </NavLink>,
-      //   'dashboard',
-      //   null,
-      // ),
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/`}>
+          {t('Dashboard')}
+        </NavLink>,
+        'dashboard',
+        null,
+      ),
     ]),
     // getItem(t('layouts'), 'layout', !topMenu && <UilWindowSection />, [
     //   getItem(

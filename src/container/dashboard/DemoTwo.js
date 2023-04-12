@@ -34,8 +34,8 @@ function DemoTwo() {
             >
               <PageHeaderBanner
                 type="corporate"
-                title="Welcome to the Admin Dashboard"
-                subtitle="Ths dashboard provides a daily summary of incident and reporter counts. It enables users to quickly view the number of incidences that occurred during a given day, as well as the number of reporters who filed those incidences"
+                title="Welcome to the Incidence Reporting System"
+                subtitle="This dashboard provides a summary of daily, weekly, monthly and all incident and App Users. It enables Admin users to quickly view the number of incidences that occurred during a given period, as well as the number of App Users who reported those incidences"
               />
             </Suspense>
           </Col>

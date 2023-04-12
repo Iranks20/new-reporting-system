@@ -346,7 +346,7 @@ function PageHeaderBanner({ type, title, subtitle }) {
       <Cards headless>
         <PageHeader className="theme-wide">
           {type === 'corporate' ? (
-            <img src={require('../../static/img/corporate.png')} alt="HexaDash Admin Template" />
+            <img src={require('../../static/img/uganda.png')} alt="HexaDash Admin Template" />
           ) : (
             <img src={require('../../static/img/banner/header-banner.png')} alt="HexaDash Admin Template" />
           )}

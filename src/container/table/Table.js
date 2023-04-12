@@ -4,6 +4,8 @@ import { Row, Col, Select } from 'antd';
 // import UilEye from '@iconscout/react-unicons/icons/uil-eye';
 import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import { Link } from 'react-router-dom';
+import { saveAs } from 'file-saver';
+import Papa from 'papaparse';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 // import DataTable from '../../components/table/DataTable';
@@ -52,6 +54,30 @@ function Tables() {
     setSelectedOption(value);
   };
 
+  function exportCsv() {
+    let apiUrl = '';
+    if (selectedOption === 'Daily') {
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/daily';
+    } else if (selectedOption === 'Weekly') {
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/weekly';
+    } else if (selectedOption === 'Monthly') {
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/monthly';
+    } else if (selectedOption === 'All') {
+      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences';
+    }
+
+    if (apiUrl !== '') {
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          const csvData = Papa.unparse(data);
+          const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
+          saveAs(blob, 'data.csv');
+        })
+        .catch((error) => console.log(error));
+    }
+  }
+
   const tableDataScource = [];
 
   if (tableData.length > 0) {
@@ -73,6 +99,9 @@ function Tables() {
             content={
               <>
                 <Link to={`/admin/users/add-user/work?id=${id}`}>View Details</Link>
+                {/* <Link to="#" onClick={exportCsv}>
+                  Export Csv
+                </Link> */}
                 {/* <Link to="#">Edit</Link>
                 <Link to="#">Delete</Link> */}
               </>
@@ -199,13 +228,18 @@ function Tables() {
                   </div>
                   {/* </Col> */}
                   {/* <Col> */}
-                  <div className="ninjadash-datatable-filter__input" width="1000px">
-                    <span className="label">Status:</span>
-                    <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
-                      <Select.Option value="Daily">UnRead</Select.Option>
-                      <Select.Option value="Monthly">Read</Select.Option>
-                    </Select>
-                  </div>
+                  <Dropdown
+                    className="wide-dropdwon"
+                    content={
+                      <>
+                        <Link to="#" onClick={exportCsv}>
+                          Export Csv
+                        </Link>
+                      </>
+                    }
+                  >
+                    <UilEllipsisH />
+                  </Dropdown>
                   {/* </Col> */}
                   {/* <Col> */}
                   {/* <div className="ninjadash-datatable-filter__right">

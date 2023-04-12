@@ -286,18 +286,18 @@ const BannerWrapper = Styled.figure`
                         bottom: 0;
                         right: 230px;
                         @media only screen and (max-width: 1699px){
-                            max-width: 360px;
+                            max-width: 180px;
                             right: 100px;
                         }
                         @media only screen and (max-width: 1599px){
-                            max-width: 360px;
+                            max-width: 180px;
                             right: 0;
                         }
                         @media only screen and (max-width: 1399px){
-                            max-width: 360px;
+                            max-width: 180px;
                         }
                         @media only screen and (max-width: 1299px){
-                            max-width: 360px;
+                            max-width: 180px;
                         }
                         @media only screen and (max-width: 767px){
                             margin-bottom: 22px;

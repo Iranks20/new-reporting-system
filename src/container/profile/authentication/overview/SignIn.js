@@ -50,7 +50,7 @@ function SignIn() {
               <Form.Item
                 name="password"
                 rules={[{ required: true, message: 'Please input your password' }]}
-                initialValue="123456"
+                placeholder="123456"
                 label="Password"
               >
                 <Input.Password placeholder="Password" />
