@@ -19,8 +19,6 @@ const Contact = lazy(() => import('../../container/contact/Contact'));
 const ContactGrid = lazy(() => import('../../container/contact/ContactGrid'));
 const ContactAddNew = lazy(() => import('../../container/contact/AddNew'));
 const Myprofile = lazy(() => import('../../container/profile/myProfile/Index'));
-const Inbox = lazy(() => import('../../container/email/Email'));
-const Editors = lazy(() => import('../../container/pages/Editor'));
 const Icons = lazy(() => import('./icons'));
 const Tables = lazy(() => import('./table'));
 const Firebase = lazy(() => import('./firebase'));
@@ -54,8 +52,6 @@ const Admin = React.memo(() => {
         <Route path="contact/addNew" element={<ContactAddNew />} />
         <Route path="features/*" element={<Features />} />
         <Route path="profile/myProfile/*" element={<Myprofile />} />
-        <Route path="email/*" element={<Inbox />} />
-        <Route path="editor" element={<Editors />} />
         <Route path="icons/*" element={<Icons />} />
         <Route path="tables/*" element={<Tables />} />
         <Route path="widgets/*" element={<Widgets />} />
