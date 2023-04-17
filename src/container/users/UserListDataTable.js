@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
 import UilEye from '@iconscout/react-unicons/icons/uil-eye';
@@ -9,32 +9,32 @@ import UserListTable from '../pages/overview/UserTable';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Main, CardToolbox } from '../styled';
 import Heading from '../../components/heading/heading';
-import { AutoComplete } from '../../components/autoComplete/autoComplete';
+// import { AutoComplete } from '../../components/autoComplete/autoComplete';
 import { Button } from '../../components/buttons/buttons';
 
 function UserList() {
-  const { searchData, users } = useSelector((state) => {
+  const { users } = useSelector((state) => {
     return {
       searchData: state.headerSearchData,
       users: state.users,
     };
   });
 
-  const [state, setState] = useState({
-    notData: searchData,
-    selectedRowKeys: 0,
-    selectedRows: 0,
-  });
+  // const [state, setState] = useState({
+  //   notData: searchData,
+  //   selectedRowKeys: 0,
+  //   selectedRows: 0,
+  // });
 
-  const { notData } = state;
+  // const { notData } = state;
 
-  const handleSearch = (searchText) => {
-    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
-    setState({
-      ...state,
-      notData: data,
-    });
-  };
+  // const handleSearch = (searchText) => {
+  //   const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  //   setState({
+  //     ...state,
+  //     notData: data,
+  //   });
+  // };
 
   const usersTableData = [];
 
@@ -83,22 +83,22 @@ function UserList() {
         <PageHeader
           className="ninjadash-page-header-main"
           ghost
-          title="User List Data Table"
+          title="Admin Users"
           subTitle={
             <>
               {/* <span className="title-counter">279 Users </span> */}
-              <AutoComplete
+              {/* <AutoComplete
                 onSearch={handleSearch}
                 dataSource={notData}
                 placeholder="Search by Name"
                 width="100%"
                 patterns
-              />
+              /> */}
             </>
           }
           buttons={[
             <Button className="btn-add_new" size="default" type="primary" key="1">
-              <Link to="/admin/users/add-user/info">+ Add New user</Link>
+              <Link to="/admin/users/add-user/info">+ Add user</Link>
             </Button>,
           ]}
         />

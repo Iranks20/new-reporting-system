@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Row, Col, message } from 'antd';
 import axios from 'axios';
@@ -8,22 +8,32 @@ function OtpPassword() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const email = localStorage.getItem('email');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   // const [isEmailDisabled, setIsEmailDisabled] = useState(true);
 
   const onFinish = (values) => {
+    setLoading(true);
     axios
       .post('http://100.25.26.230:5000/api/v3/verify-otp', { ...values, email })
       .then((res) => {
+        console.log('iiiiirr');
         if (res.status === 200) {
           console.log(res);
           message.success('OTP verification successful');
-          navigate('/changepassword');
+          setLoading(false);
+          setSuccess(true);
+          setTimeout(() => {
+            navigate('/changepassword');
+          }, 1000);
         } else {
           message.error('Invalid OTP');
+          setLoading(false);
         }
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
         message.error('Failed to verify OTP');
       });
   };
@@ -56,8 +66,8 @@ function OtpPassword() {
                 <Input placeholder="Enter OTP" />
               </Form.Item>
               <Form.Item>
-                <Button className="btn-reset" htmlType="submit" type="primary" size="large">
-                  Verify OTP
+                <Button className="btn-reset" htmlType="submit" type="primary" size="large" loading={loading}>
+                  {success ? 'Success' : 'Verify Otp'}
                 </Button>
               </Form.Item>
             </div>

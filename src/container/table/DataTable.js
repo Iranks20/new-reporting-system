@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import { Row, Col, Select, message } from 'antd';
-import UilEye from '@iconscout/react-unicons/icons/uil-eye';
+import { Row, Col, Select } from 'antd';
+// import UilEye from '@iconscout/react-unicons/icons/uil-eye';
 import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
@@ -10,10 +10,10 @@ import Papa from 'papaparse';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 // import DataTable from '../../components/table/DataTable';
-import { Main, BorderLessHeading } from '../styled';
+import { Main, BorderLessHeading, DataTableStyleWrap } from '../styled';
 import { Dropdown } from '../../components/dropdown/dropdown';
 import DataTable from '../../components/table/DataTable';
-import { Button } from '../../components/buttons/buttons';
+// import { Button } from '../../components/buttons/buttons';
 
 function Tables() {
   const [tableData, setTableData] = useState([]);
@@ -26,7 +26,7 @@ function Tables() {
     },
     {
       path: 'first',
-      breadcrumbName: 'Reporters Table',
+      breadcrumbName: 'App Users Table',
     },
   ];
 
@@ -81,19 +81,19 @@ function Tables() {
 
   if (tableData.length > 0) {
     tableData.forEach((item) => {
-      const { id, firstName, lastName, email, sex, phoneNumber, datetime, status } = item;
+      const { id, firstName, lastName, email, sex, phoneNumber, datetime } = item;
       tableDataScource.push({
         id: `${id}`,
         firstName: <span className="ninjadash-username">{firstName}</span>,
         lastName: <span className="ninjadash-username">{lastName}</span>,
         email: <span>{email}</span>,
         sex: <span>{sex}</span>,
-        phone_number: phoneNumber,
+        phoneNumber: <span>{phoneNumber}</span>,
         datetime,
-        status: <span className={`ninjadash-status ninjadash-status-${status}`}>{status}</span>,
+        // status: <span className={`ninjadash-status ninjadash-status-${status}`}>{status}</span>,
         action: (
           <div className="table-actions">
-            <Button
+            {/* <Button
               className="btn-icon"
               type="primary"
               shape="circle"
@@ -114,7 +114,7 @@ function Tables() {
               }}
             >
               <UilEye />
-            </Button>
+            </Button> */}
             <Dropdown
               className="wide-dropdwon"
               content={
@@ -172,11 +172,11 @@ function Tables() {
       dataIndex: 'datetime',
       key: 'datetime',
     },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-    },
+    // {
+    //   title: 'Status',
+    //   dataIndex: 'status',
+    //   key: 'status',
+    // },
     {
       title: 'Actions',
       dataIndex: 'action',
@@ -187,50 +187,52 @@ function Tables() {
 
   return (
     <>
-      <PageHeader className="ninjadash-page-header-main" title="Reporters" routes={PageRoutes} />
+      <PageHeader className="ninjadash-page-header-main" title="App Users" routes={PageRoutes} />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
             <BorderLessHeading>
-              <Cards title="Reporters Table">
-                <Row>
-                  {/* <Col> */}
-                  {/* <div className="ninjadash-datatable-filter__input">
-                    <span className="label">Id:</span>
-                    <Input placeholder="Search with Id" />
-                  </div> */}
-                  {/* </Col> */}
-                  {/* <Col> */}
-                  <div className="ninjadash-datatable-filter__input">
-                    <span className="label">Actions:</span>
-                    <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
-                      <Select.Option value="Daily">Daily</Select.Option>
-                      <Select.Option value="Weekly">Weekly</Select.Option>
-                      <Select.Option value="Monthly">Monthly</Select.Option>
-                      <Select.Option value="All">All</Select.Option>
-                    </Select>
-                  </div>
-                  {/* </Col> */}
-                  {/* <Col> */}
-                  {/* <Dropdown
-                    className="wide-dropdwon"
-                    content={
-                      <>
-                        <Link to="#" onClick={exportCsv}>
-                          Export Csv
-                        </Link>
-                      </>
-                    }
-                  >
-                    <UilEllipsisH />
-                  </Dropdown> */}
-                  {/* </Col> */}
-                  {/* <Col> */}
-                  {/* <div className="ninjadash-datatable-filter__right">
-                    <Input size="default" placeholder="Search" />
-                  </div> */}
-                  {/* </Col> */}
-                </Row>
+              <Cards title="App Users Table">
+                <DataTableStyleWrap>
+                  <Row>
+                    {/* <Col> */}
+                    {/* <div className="ninjadash-datatable-filter__input">
+                      <span className="label">Id:</span>
+                      <Input placeholder="Search with Id" />
+                    </div> */}
+                    {/* </Col> */}
+                    {/* <Col> */}
+                    <div className="ninjadash-datatable-filter__input">
+                      <span className="label">Actions:</span>
+                      <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
+                        <Select.Option value="Daily">Daily</Select.Option>
+                        <Select.Option value="Weekly">Weekly</Select.Option>
+                        <Select.Option value="Monthly">Monthly</Select.Option>
+                        <Select.Option value="All">All</Select.Option>
+                      </Select>
+                    </div>
+                    {/* </Col> */}
+                    {/* <Col> */}
+                    {/* <Dropdown
+                      className="wide-dropdwon"
+                      content={
+                        <>
+                          <Link to="#" onClick={exportCsv}>
+                            Export Csv
+                          </Link>
+                        </>
+                      }
+                    >
+                      <UilEllipsisH />
+                    </Dropdown> */}
+                    {/* </Col> */}
+                    {/* <Col> */}
+                    {/* <div className="ninjadash-datatable-filter__right">
+                      <Input size="default" placeholder="Search" />
+                    </div> */}
+                    {/* </Col> */}
+                  </Row>
+                </DataTableStyleWrap>
                 <DataTable
                   filterOption
                   filterOnchange

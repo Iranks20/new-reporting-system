@@ -11,17 +11,24 @@ import { Modal } from '../../../components/modals/antd-modals';
 
 function UserListTable() {
   const [usersTableData, setUsersTableData] = useState([]);
-  const [state, setState] = useState({});
+  // const [state, setState] = useState({});
   const [userData, setUserData] = useState([]);
-  const [editUserData, setEditUserData] = useState({});
   const [selectedUserId, setSelectedUserId] = useState(null);
+  console.log(userData);
+  const [form] = Form.useForm();
+  const [visible, setVisible] = useState(false);
+  const [modalKey, setModalKey] = useState(0);
 
   // user data in the table
   const handleRefresh = () => {
-    fetch('http://localhost:5000/api/v2/users')
+    fetch('http://100.25.26.230:5000/api/v2/users')
       .then((response) => response.json())
       .then((data) => {
         setUsersTableData(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        message.error('An error occurred while fetching users user');
       });
   };
 
@@ -30,56 +37,69 @@ function UserListTable() {
     handleRefresh();
   }, []);
 
-  const showModal = (id) => {
-    setSelectedUserId(id);
-    fetch(`http://localhost:5000/api/v2/users/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUserData(data);
-        setEditUserData({});
-        setState({
-          ...state,
-          visible: true,
+  const showModal = async (id) => {
+    try {
+      const response = await fetch(`http://100.25.26.230:5000/api/v2/users/${id}`);
+      const data = await response.json();
+      if (userData.length > 0) {
+        form.setFieldsValue({
+          name: data.name,
+          email: data.email,
+          phoneNumber: data.phoneNumber,
+          company: data.company,
+          position: data.position,
         });
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error(error);
-        message.error('An error occurred while fetching user data');
-      });
+      }
+      setUserData(data);
+      setVisible(true);
+      form.resetFields();
+      setModalKey((prevKey) => prevKey + 1);
+    } catch (error) {
+      console.error(error);
+      message.error('An error occurred while fetching user data');
+    }
+    setSelectedUserId(id);
   };
   const onCancel = () => {
-    setEditUserData({});
-    setState({
-      ...state,
-      visible: false,
-      editVisible: false,
-      update: {},
-    });
+    setUserData([]);
+    setVisible(false);
+    form.resetFields();
+    setModalKey((prevKey) => prevKey + 1);
+    setSelectedUserId(null);
   };
   const handleCancel = () => {
     onCancel();
   };
-
   const handleUpdateUser = () => {
-    fetch(`http://localhost:5000/api/v2/users/${selectedUserId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(editUserData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        message.success('User updated successfully');
-        handleRefresh();
-        onCancel();
+    form.validateFields().then((values) => {
+      const updatedUser = {
+        name: values.name,
+        email: values.email,
+        phoneNumber: values.phoneNumber,
+        company: values.company,
+        position: values.position,
+      };
+
+      fetch(`http://100.25.26.230:5000/api/v2/users/${selectedUserId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUser),
       })
-      .catch((error) => {
-        console.error(error);
-        message.error('An error occurred while updating user data');
-      });
+        .then((response) => response.json())
+        .then(() => {
+          message.success('User updated successfully');
+          handleRefresh();
+          form.resetFields();
+          setModalKey((prevKey) => prevKey + 1);
+          setVisible(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          message.error('An error occurred while updating user');
+        });
+    });
   };
 
   const usersTableColumns = [
@@ -158,7 +178,7 @@ function UserListTable() {
                     type="danger"
                     shape="circle"
                     onClick={() => {
-                      fetch(`http://localhost:5000/api/v2/users/${user.id}`, {
+                      fetch(`http://100.25.26.230:5000/api/v2/users/${user.id}`, {
                         method: 'DELETE',
                       })
                         .then(() => {
@@ -187,9 +207,10 @@ function UserListTable() {
         </TableWrapper>
       </UserTableStyleWrapper>
       <Modal
-        type={state.modalType}
+        key={modalKey}
+        type={visible}
         title="Contact Information"
-        visible={state.visible}
+        visible={visible}
         footer={[
           <Button key="cancel" onClick={handleCancel}>
             Cancel
@@ -199,52 +220,48 @@ function UserListTable() {
           </Button>,
         ]}
         onCancel={handleCancel}
-        userData={userData}
       >
-        <div className="project-modal">
-          <BasicFormWrapper>
-            {userData.map((userDataa) => {
-              return (
-                <Form name="contact">
-                  <Form.Item label="id" name="id">
-                    <Input defaultValue={userDataa.id} disabled />
-                  </Form.Item>
-                  <Form.Item label="Name" name="name">
-                    <Input
-                      // name="name"
-                      defaultValue={userDataa.name}
-                      onChange={(e) => setEditUserData({ ...editUserData, name: e.target.value })}
-                    />
-                  </Form.Item>
-                  <Form.Item label="Email" name="email">
-                    <Input
-                      defaultValue={userDataa.email}
-                      onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}
-                    />
-                  </Form.Item>
-                  <Form.Item label="Phone Number" name="phone">
-                    <Input
-                      defaultValue={userDataa.phoneNumber}
-                      onChange={(e) => setEditUserData({ ...editUserData, phoneNumber: e.target.value })}
-                    />
-                  </Form.Item>
-                  <Form.Item label="Company" name="company">
-                    <Input
-                      defaultValue={userDataa.company}
-                      onChange={(e) => setEditUserData({ ...editUserData, company: e.target.value })}
-                    />
-                  </Form.Item>
-                  <Form.Item label="Position" name="position">
-                    <Input
-                      defaultValue={userDataa.position}
-                      onChange={(e) => setEditUserData({ ...editUserData, position: e.target.value })}
-                    />
-                  </Form.Item>
-                </Form>
-              );
-            })}
-          </BasicFormWrapper>
-        </div>
+        <BasicFormWrapper>
+          {userData.map((userDataa) => {
+            return (
+              <Form form={form} layout="vertical" name="userForm">
+                <Form.Item name="id" label="id" initialValue={userDataa.id}>
+                  <Input disabled />
+                </Form.Item>
+                <Form.Item name="name" label="Name" initialValue={userDataa.name} rules={[{ required: true }]}>
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="email"
+                  label="Email"
+                  initialValue={userDataa.email}
+                  rules={[{ required: true, type: 'email' }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="phoneNumber"
+                  label="Phone Number"
+                  initialValue={userDataa.phoneNumber}
+                  rules={[{ required: true }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item name="company" label="Company" initialValue={userDataa.company} rules={[{ required: true }]}>
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="position"
+                  label="Position"
+                  initialValue={userDataa.position}
+                  rules={[{ required: true }]}
+                >
+                  <Input />
+                </Form.Item>
+              </Form>
+            );
+          })}
+        </BasicFormWrapper>
       </Modal>
     </Cards>
   );

@@ -37,7 +37,7 @@ function Info() {
     } catch (error) {
       console.error('API error:', error);
       setIsLoading(false);
-      message.info('Fill the required fields or else internal server error');
+      message.info('user exists already or else internal server error');
     }
   };
 
@@ -81,7 +81,7 @@ function Info() {
                 label="Password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
               >
-                <Input placeholder="UFHhdbd2000" />
+                <Input.Password placeholder="password1234" />
               </Form.Item>
 
               <Form.Item

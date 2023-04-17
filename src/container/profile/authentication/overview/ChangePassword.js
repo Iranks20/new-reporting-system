@@ -20,7 +20,8 @@ function ChangePassword() {
         setSuccess(true);
         setTimeout(() => {
           navigate('/');
-        }, 3000);
+        }, 2000);
+        localStorage.removeItem('email');
       }
     } catch (error) {
       setLoading(false);

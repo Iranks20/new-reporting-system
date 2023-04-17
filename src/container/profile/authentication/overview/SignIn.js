@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Button, Col, Form, Input, message, Row } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthFormWrap } from './style';
@@ -5,8 +6,11 @@ import { AuthFormWrap } from './style';
 function SignIn() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const onFinish = async (values) => {
+    setLoading(true);
     try {
       const response = await fetch('http://100.25.26.230:5000/api/v3/login', {
         method: 'POST',
@@ -20,11 +24,17 @@ function SignIn() {
 
       if (response.ok) {
         message.success('Login successful!');
-        navigate('/admin');
+        setLoading(false);
+        setSuccess(true);
+        setTimeout(() => {
+          navigate('/admin');
+        }, 2000);
       } else {
         message.error(data.message || 'Login failed. Check your credentials and Please try again.');
+        setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
       console.error('Login error:', error);
       message.error('Login failed. Please try again.');
     }
@@ -61,8 +71,8 @@ function SignIn() {
                 </NavLink>
               </div>
               <Form.Item>
-                <Button className="btn-signin" htmlType="submit" type="primary" size="large">
-                  Sign In
+                <Button className="btn-reset" htmlType="submit" type="primary" size="large" loading={loading}>
+                  {success ? 'Success' : 'Sign in'}
                 </Button>
               </Form.Item>
             </Form>

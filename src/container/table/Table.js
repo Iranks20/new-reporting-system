@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import { Row, Col, Select } from 'antd';
+import { Row, Col, Select, Button } from 'antd';
 // import UilEye from '@iconscout/react-unicons/icons/uil-eye';
 import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Papa from 'papaparse';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 // import DataTable from '../../components/table/DataTable';
-import { Main, BorderLessHeading } from '../styled';
+import { Main, BorderLessHeading, DataTableStyleWrap } from '../styled';
 import DataTable from '../../components/table/DataTable';
 import { Dropdown } from '../../components/dropdown/dropdown';
 // import { Button } from '../../components/buttons/buttons';
@@ -209,44 +209,36 @@ function Tables() {
           <Col xs={24}>
             <BorderLessHeading>
               <Cards title="Incidence Table">
-                <Row>
-                  {/* <Col> */}
-                  {/* <div className="ninjadash-datatable-filter__input">
-                    <span className="label">Id:</span>
-                    <Input placeholder="Search with Id" />
-                  </div> */}
-                  {/* </Col> */}
-                  {/* <Col> */}
-                  <div className="ninjadash-datatable-filter__input">
-                    <span className="label">Actions:</span>
-                    <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
-                      <Select.Option value="Daily">Daily</Select.Option>
-                      <Select.Option value="Weekly">Weekly</Select.Option>
-                      <Select.Option value="Monthly">Monthly</Select.Option>
-                      <Select.Option value="All">All</Select.Option>
-                    </Select>
-                  </div>
-                  {/* </Col> */}
-                  {/* <Col> */}
-                  <Dropdown
-                    className="wide-dropdwon"
-                    content={
-                      <>
-                        <Link to="#" onClick={exportCsv}>
-                          Export Csv
-                        </Link>
-                      </>
-                    }
-                  >
-                    <UilEllipsisH />
-                  </Dropdown>
-                  {/* </Col> */}
-                  {/* <Col> */}
-                  {/* <div className="ninjadash-datatable-filter__right">
-                    <Input size="default" placeholder="Search" />
-                  </div> */}
-                  {/* </Col> */}
-                </Row>
+                <DataTableStyleWrap>
+                  <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div className="ninjadash-datatable-filter__input">
+                      <span className="label">Actions:</span>
+                      <Select style={{ width: 200 }} value={selectedOption} onChange={handleOptionChange}>
+                        <Select.Option value="Daily">Daily</Select.Option>
+                        <Select.Option value="Weekly">Weekly</Select.Option>
+                        <Select.Option value="Monthly">Monthly</Select.Option>
+                        <Select.Option value="All">All</Select.Option>
+                      </Select>
+                    </div>
+                    <div className="ninjadash-datatable-filter__right">
+                      {/* <Dropdown
+                        className="wide-dropdwon"
+                        content={
+                          <>
+                            <Link to="#" onClick={exportCsv}>
+                              Export Csv
+                            </Link>
+                          </>
+                        }
+                      >
+                        <UilEllipsisH />
+                      </Dropdown> */}
+                      <Button className="btn-export" type="primary" onClick={exportCsv}>
+                        Export Csv
+                      </Button>
+                    </div>
+                  </Row>
+                </DataTableStyleWrap>
                 <DataTable
                   filterOption
                   filterOnchange

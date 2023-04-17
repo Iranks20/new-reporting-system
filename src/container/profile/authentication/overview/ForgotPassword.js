@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Row, Col, message } from 'antd';
 import axios from 'axios';
@@ -7,8 +7,11 @@ import { AuthFormWrap } from './style';
 function ForgotPassword() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const onFinish = (values) => {
+    setLoading(true);
     axios
       .post('http://100.25.26.230:5000/api/v3/forgot-password', values)
       .then((res) => {
@@ -16,13 +19,19 @@ function ForgotPassword() {
           console.log(res);
           message.success('otp sent to your email');
           localStorage.setItem('email', values.email); // store email in local storage
-          navigate('/otppassword');
+          setLoading(false);
+          setSuccess(true);
+          setTimeout(() => {
+            navigate('/otppassword');
+          }, 1000);
         } else {
           message.error('invalid email');
+          setLoading(false);
         }
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
         message.error('failed to send otp');
       });
   };
@@ -47,8 +56,8 @@ function ForgotPassword() {
                 <Input placeholder="name@example.com" />
               </Form.Item>
               <Form.Item>
-                <Button className="btn-reset" htmlType="submit" type="primary" size="large">
-                  Send Reset Instructions
+                <Button className="btn-reset" htmlType="submit" type="primary" size="large" loading={loading}>
+                  {success ? 'Success' : 'Send Reset Instructions'}
                 </Button>
               </Form.Item>
             </div>
