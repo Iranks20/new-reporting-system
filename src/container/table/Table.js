@@ -72,7 +72,7 @@ function Tables() {
         .then((data) => {
           const csvData = Papa.unparse(data);
           const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
-          saveAs(blob, 'data.csv');
+          saveAs(blob, 'Incidences.csv');
         })
         .catch((error) => console.log(error));
     }
@@ -221,18 +221,6 @@ function Tables() {
                       </Select>
                     </div>
                     <div className="ninjadash-datatable-filter__right">
-                      {/* <Dropdown
-                        className="wide-dropdwon"
-                        content={
-                          <>
-                            <Link to="#" onClick={exportCsv}>
-                              Export Csv
-                            </Link>
-                          </>
-                        }
-                      >
-                        <UilEllipsisH />
-                      </Dropdown> */}
                       <Button className="btn-export" type="primary" onClick={exportCsv}>
                         Export Csv
                       </Button>

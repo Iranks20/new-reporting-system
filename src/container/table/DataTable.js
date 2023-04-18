@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import { Row, Col, Select } from 'antd';
+import { Row, Col, Select, Button } from 'antd';
 // import UilEye from '@iconscout/react-unicons/icons/uil-eye';
-import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
-import { Link } from 'react-router-dom';
+// import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
+// import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import { saveAs } from 'file-saver';
 import Papa from 'papaparse';
@@ -11,7 +11,7 @@ import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 // import DataTable from '../../components/table/DataTable';
 import { Main, BorderLessHeading, DataTableStyleWrap } from '../styled';
-import { Dropdown } from '../../components/dropdown/dropdown';
+// import { Dropdown } from '../../components/dropdown/dropdown';
 import DataTable from '../../components/table/DataTable';
 // import { Button } from '../../components/buttons/buttons';
 
@@ -71,7 +71,7 @@ function Tables() {
         .then((data) => {
           const csvData = Papa.unparse(data);
           const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
-          saveAs(blob, 'data.csv');
+          saveAs(blob, 'App Users.csv');
         })
         .catch((error) => console.log(error));
     }
@@ -90,45 +90,6 @@ function Tables() {
         sex: <span>{sex}</span>,
         phoneNumber: <span>{phoneNumber}</span>,
         datetime,
-        // status: <span className={`ninjadash-status ninjadash-status-${status}`}>{status}</span>,
-        action: (
-          <div className="table-actions">
-            {/* <Button
-              className="btn-icon"
-              type="primary"
-              shape="circle"
-              onClick={() => {
-                fetch(`http://100.25.26.230:5000/api/v1/reporters/status/${id}`, {
-                  method: 'PUT',
-                })
-                  .then(() => {
-                    setTableData(tableData.filter((statu) => statu.id !== id));
-                    // message.success('Read updated successfully');
-                    handleRefresher();
-                    // handleRefresh();
-                  })
-                  .catch((error) => {
-                    console.error(error);
-                    message.error('An error occurred while updatig Read');
-                  });
-              }}
-            >
-              <UilEye />
-            </Button> */}
-            <Dropdown
-              className="wide-dropdwon"
-              content={
-                <>
-                  <Link to="#" onClick={exportCsv}>
-                    Export Csv
-                  </Link>
-                </>
-              }
-            >
-              <UilEllipsisH />
-            </Dropdown>
-          </div>
-        ),
       });
     });
   }
@@ -172,17 +133,6 @@ function Tables() {
       dataIndex: 'datetime',
       key: 'datetime',
     },
-    // {
-    //   title: 'Status',
-    //   dataIndex: 'status',
-    //   key: 'status',
-    // },
-    {
-      title: 'Actions',
-      dataIndex: 'action',
-      key: 'action',
-      width: '90px',
-    },
   ];
 
   return (
@@ -194,7 +144,7 @@ function Tables() {
             <BorderLessHeading>
               <Cards title="App Users Table">
                 <DataTableStyleWrap>
-                  <Row>
+                  <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
                     {/* <Col> */}
                     {/* <div className="ninjadash-datatable-filter__input">
                       <span className="label">Id:</span>
@@ -211,26 +161,11 @@ function Tables() {
                         <Select.Option value="All">All</Select.Option>
                       </Select>
                     </div>
-                    {/* </Col> */}
-                    {/* <Col> */}
-                    {/* <Dropdown
-                      className="wide-dropdwon"
-                      content={
-                        <>
-                          <Link to="#" onClick={exportCsv}>
-                            Export Csv
-                          </Link>
-                        </>
-                      }
-                    >
-                      <UilEllipsisH />
-                    </Dropdown> */}
-                    {/* </Col> */}
-                    {/* <Col> */}
-                    {/* <div className="ninjadash-datatable-filter__right">
-                      <Input size="default" placeholder="Search" />
-                    </div> */}
-                    {/* </Col> */}
+                    <div className="ninjadash-datatable-filter__right">
+                      <Button className="btn-export" type="primary" onClick={exportCsv}>
+                        Export Csv
+                      </Button>
+                    </div>
                   </Row>
                 </DataTableStyleWrap>
                 <DataTable

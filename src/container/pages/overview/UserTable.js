@@ -38,6 +38,7 @@ function UserListTable() {
   }, []);
 
   const showModal = async (id) => {
+    setSelectedUserId(id);
     try {
       const response = await fetch(`http://100.25.26.230:5000/api/v2/users/${id}`);
       const data = await response.json();
@@ -58,7 +59,6 @@ function UserListTable() {
       console.error(error);
       message.error('An error occurred while fetching user data');
     }
-    setSelectedUserId(id);
   };
   const onCancel = () => {
     setUserData([]);
@@ -71,6 +71,7 @@ function UserListTable() {
     onCancel();
   };
   const handleUpdateUser = () => {
+    console.log(selectedUserId);
     form.validateFields().then((values) => {
       const updatedUser = {
         name: values.name,
