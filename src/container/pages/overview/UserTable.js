@@ -38,7 +38,6 @@ function UserListTable() {
   }, []);
 
   const showModal = async (id) => {
-    setSelectedUserId(id);
     try {
       const response = await fetch(`http://100.25.26.230:5000/api/v2/users/${id}`);
       const data = await response.json();
@@ -47,6 +46,7 @@ function UserListTable() {
           name: data.name,
           email: data.email,
           phoneNumber: data.phoneNumber,
+          nationality: data.nationality,
           company: data.company,
           position: data.position,
         });
@@ -59,6 +59,7 @@ function UserListTable() {
       console.error(error);
       message.error('An error occurred while fetching user data');
     }
+    setSelectedUserId(id);
   };
   const onCancel = () => {
     setUserData([]);
@@ -71,13 +72,14 @@ function UserListTable() {
     onCancel();
   };
   const handleUpdateUser = () => {
-    console.log(selectedUserId);
     form.validateFields().then((values) => {
       const updatedUser = {
         name: values.name,
         email: values.email,
         phoneNumber: values.phoneNumber,
+        nationality: values.nationality,
         company: values.company,
+        password: values.password,
         position: values.position,
       };
 
@@ -125,6 +127,11 @@ function UserListTable() {
       key: 'phoneNumber',
     },
     {
+      title: 'Nationality',
+      dataIndex: 'nationality',
+      key: 'nationality',
+    },
+    {
       title: 'Company',
       dataIndex: 'company',
       key: 'company',
@@ -166,6 +173,7 @@ function UserListTable() {
               id: user.id,
               email: user.email,
               phoneNumber: user.phoneNumber,
+              nationality: user.nationality,
               company: user.company,
               position: user.position,
               datetime: user.datetime,
@@ -244,6 +252,14 @@ function UserListTable() {
                   name="phoneNumber"
                   label="Phone Number"
                   initialValue={userDataa.phoneNumber}
+                  rules={[{ required: true }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="nationality"
+                  label="Nationality"
+                  initialValue={userDataa.nationality}
                   rules={[{ required: true }]}
                 >
                   <Input />
