@@ -5,7 +5,6 @@ import UilPlus from '@iconscout/react-unicons/icons/uil-plus';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Main, BasicFormWrapper } from '../styled';
 import { Cards } from '../../components/cards/frame/cards-frame';
-import { Cascader } from '../../components/cascader/cascader';
 import { Button } from '../../components/buttons/buttons';
 import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
@@ -21,10 +20,6 @@ function Forms() {
   });
   const handleSubmit = (values) => {
     setstate({ ...state, values });
-  };
-
-  const onChangeCascader = (value) => {
-    setstate({ ...state, cascaderItem: value });
   };
 
   return (
@@ -73,11 +68,6 @@ function Forms() {
                   <Form.Item label="Textarea" name="textarea">
                     <TextArea />
                   </Form.Item>
-                  <div className="form-item">
-                    <label>Cascades</label>
-                    <Cascader onChange={onChangeCascader} defaultValue={['zhejiang', 'hangzhou', 'xihu']} />
-                  </div>
-
                   <Form.Item label="Select" name="Select">
                     <Select
                       showSearch

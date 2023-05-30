@@ -14,7 +14,7 @@ function ChangePassword() {
     const email = localStorage.getItem('email');
     const data = { ...values, email };
     try {
-      const response = await axios.post('http://100.25.26.230:5000/api/v3/update-password', data);
+      const response = await axios.post('http://16.171.10.64:5000/api/v3/update-password', data);
       if (response.status === 200) {
         setLoading(false);
         setSuccess(true);

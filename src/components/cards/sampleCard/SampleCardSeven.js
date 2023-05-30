@@ -1,10 +1,9 @@
 import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import propTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../buttons/buttons';
-import { Checkbox } from '../../checkbox/checkbox';
 import { Dropdown } from '../../dropdown/dropdown';
 
 const CardWrapper = styled.figure`
@@ -114,12 +113,6 @@ const CardWrapper = styled.figure`
 
 function SampleCardSeven({ item }) {
   const { installed, content, title, img } = item;
-  const [state, setState] = useState({
-    checked: false,
-  });
-  const onChange = (checked) => {
-    setState({ ...state, checked });
-  };
   return (
     <CardWrapper>
       <div className="card-short">
@@ -131,11 +124,6 @@ function SampleCardSeven({ item }) {
           <p>{content}</p>
         </div>
         <div className={installed ? 'card-short__bottom installed' : 'card-short__bottom'}>
-          <div className="card-short-checkbox">
-            <Checkbox checked={state.checked} onChange={onChange}>
-              Installed
-            </Checkbox>
-          </div>
           <div className="card-short-actions">
             <div className="content-installed content-action">
               <Button type="primary" size="small" shape="circle" outlined>

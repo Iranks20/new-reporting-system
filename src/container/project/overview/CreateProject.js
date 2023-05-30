@@ -3,7 +3,6 @@ import { Form, Input, Select, Col, Row, DatePicker } from 'antd';
 import propTypes from 'prop-types';
 import { Button } from '../../../components/buttons/buttons';
 import { Modal } from '../../../components/modals/antd-modals';
-import { CheckboxGroup } from '../../../components/checkbox/checkbox';
 import { BasicFormWrapper } from '../../styled';
 
 const { Option } = Select;
@@ -38,21 +37,6 @@ function CreateProject({ visible, onCancel }) {
     onCancel();
   };
 
-  const options = [
-    {
-      label: 'Privet',
-      value: 'privet',
-    },
-    {
-      label: 'Team',
-      value: 'team',
-    },
-    {
-      label: 'Public',
-      value: 'public',
-    },
-  ];
-
   return (
     <Modal
       type={state.modalType}
@@ -85,9 +69,6 @@ function CreateProject({ visible, onCancel }) {
             </Form.Item>
             <Form.Item name="description" label="">
               <Input.TextArea rows={4} placeholder="Project Description" />
-            </Form.Item>
-            <Form.Item name="pricacy" initialValue={['team']} label="Project Privacy">
-              <CheckboxGroup options={options} />
             </Form.Item>
             <Form.Item name="members" label="Project Members">
               <Input placeholder="Search Members" />

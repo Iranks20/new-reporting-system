@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import { Row, Col, Form, Input, Button } from 'antd';
@@ -8,22 +8,13 @@ import UilGithub from '@iconscout/react-unicons/icons/uil-github';
 
 import { useDispatch } from 'react-redux';
 import { AuthFormWrap } from './style';
-import { Checkbox } from '../../../../components/checkbox/checkbox';
 import { register } from '../../../../redux/authentication/actionCreator';
 
 function SignUp() {
   const dispatch = useDispatch();
 
-  const [state, setState] = useState({
-    values: null,
-    checked: null,
-  });
   const handleSubmit = (values) => {
     dispatch(register(values));
-  };
-
-  const onChange = (checked) => {
-    setState({ ...state, checked });
   };
 
   return (
@@ -52,11 +43,6 @@ function SignUp() {
               >
                 <Input.Password placeholder="Password" />
               </Form.Item>
-              <div className="ninjadash-auth-extra-links">
-                <Checkbox onChange={onChange} checked={state.checked}>
-                  Creating an account means you’re okay with our Terms of Service and Privacy Policy
-                </Checkbox>
-              </div>
               <Form.Item>
                 <Button className="btn-create" htmlType="submit" type="primary" size="large">
                   Create Account

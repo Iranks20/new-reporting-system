@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,6 @@ import UilFacebook from '@iconscout/react-unicons/icons/uil-facebook-f';
 import UilTwitter from '@iconscout/react-unicons/icons/uil-twitter';
 import UilGithub from '@iconscout/react-unicons/icons/uil-github';
 import { AuthFormWrap } from './style';
-import { Checkbox } from '../../../../components/checkbox/checkbox';
 
 import {
   fbAuthSignUp,
@@ -26,10 +25,6 @@ function SignUp() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    values: null,
-    checked: null,
-  });
 
   const handleFbLogin = useCallback(() => {
     dispatch(login());
@@ -43,11 +38,7 @@ function SignUp() {
   }, [isFbAuthenticate, handleFbLogin]);
 
   const handleSubmit = (values) => {
-    dispatch(fbAuthSignUp({ ...values, terms: state.checked }));
-  };
-
-  const onChange = (checked) => {
-    setState({ ...state, checked });
+    dispatch(fbAuthSignUp({ ...values }));
   };
 
   return (
@@ -83,11 +74,6 @@ function SignUp() {
               >
                 <Input.Password placeholder="Password" />
               </Form.Item>
-              <div className="ninjadash-auth-extra-links">
-                <Checkbox onChange={onChange} checked={state.checked}>
-                  Creating an account means you’re okay with our Terms of Service and Privacy Policy
-                </Checkbox>
-              </div>
               {isSignUpError ? <p>{isSignUpError.message}</p> : null}
               <Form.Item>
                 <Button disabled={isSignUpLoading} className="btn-create" htmlType="submit" type="primary" size="large">

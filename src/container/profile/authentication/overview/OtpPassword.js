@@ -15,7 +15,7 @@ function OtpPassword() {
   const onFinish = (values) => {
     setLoading(true);
     axios
-      .post('http://100.25.26.230:5000/api/v3/verify-otp', { ...values, email })
+      .post('http://16.171.10.64:5000/api/v3/verify-otp', { ...values, email })
       .then((res) => {
         console.log('iiiiirr');
         if (res.status === 200) {

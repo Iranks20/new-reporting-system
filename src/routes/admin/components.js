@@ -29,8 +29,6 @@ const Collapse = lazy(() => import('../../container/ui-elements/Collapse'));
 const Avatar = lazy(() => import('../../container/ui-elements/Avata'));
 const Badge = lazy(() => import('../../container/ui-elements/Badge'));
 const AutoComplete = lazy(() => import('../../container/ui-elements/AutoComplete'));
-const Checkbox = lazy(() => import('../../container/ui-elements/Checkbox'));
-const Cascader = lazy(() => import('../../container/ui-elements/Cascader'));
 const DatePicker = lazy(() => import('../../container/ui-elements/DatePicker'));
 const Switches = lazy(() => import('../../container/ui-elements/Switch'));
 const TimePicker = lazy(() => import('../../container/ui-elements/Timepicker'));
@@ -78,8 +76,6 @@ function ComponentRoute() {
       <Route path="carousel" element={<Carousel />} />
       <Route path="collapse" element={<Collapse />} />
       <Route path="auto-complete" element={<AutoComplete />} />
-      <Route path="checkbox" element={<Checkbox />} />
-      <Route path="cascader" element={<Cascader />} />
       <Route path="date-picker" element={<DatePicker />} />
       <Route path="switch" element={<Switches />} />
       <Route path="select" element={<Selects />} />

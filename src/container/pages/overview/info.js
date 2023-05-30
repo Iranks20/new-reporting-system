@@ -15,7 +15,7 @@ function Info() {
     setIsLoading(true);
     console.log('inno');
     try {
-      const response = await fetch('http://100.25.26.230:5000/api/v3/signup', {
+      const response = await fetch('http://16.171.10.64:5000/api/v3/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

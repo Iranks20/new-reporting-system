@@ -21,7 +21,7 @@ function UserListTable() {
 
   // user data in the table
   const handleRefresh = () => {
-    fetch('http://100.25.26.230:5000/api/v2/users')
+    fetch('http://16.171.10.64:5000/api/v2/users')
       .then((response) => response.json())
       .then((data) => {
         setUsersTableData(data);
@@ -39,7 +39,7 @@ function UserListTable() {
 
   const showModal = async (id) => {
     try {
-      const response = await fetch(`http://100.25.26.230:5000/api/v2/users/${id}`);
+      const response = await fetch(`http://16.171.10.64:5000/api/v2/users/${id}`);
       const data = await response.json();
       if (userData.length > 0) {
         form.setFieldsValue({
@@ -83,7 +83,7 @@ function UserListTable() {
         position: values.position,
       };
 
-      fetch(`http://100.25.26.230:5000/api/v2/users/${selectedUserId}`, {
+      fetch(`http://16.171.10.64:5000/api/v2/users/${selectedUserId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ function UserListTable() {
                     type="danger"
                     shape="circle"
                     onClick={() => {
-                      fetch(`http://100.25.26.230:5000/api/v2/users/${user.id}`, {
+                      fetch(`http://16.171.10.64:5000/api/v2/users/${user.id}`, {
                         method: 'DELETE',
                       })
                         .then(() => {

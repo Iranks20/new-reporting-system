@@ -13,7 +13,7 @@ function ForgotPassword() {
   const onFinish = (values) => {
     setLoading(true);
     axios
-      .post('http://100.25.26.230:5000/api/v3/forgot-password', values)
+      .post('http://16.171.10.64:5000/api/v3/forgot-password', values)
       .then((res) => {
         if (res.status === 200) {
           console.log(res);

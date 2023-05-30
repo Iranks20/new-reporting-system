@@ -33,13 +33,13 @@ function Tables() {
   const handleRefresher = () => {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/daily';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/weekly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/monthly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters';
     }
 
     if (apiUrl !== '') {
@@ -56,13 +56,13 @@ function Tables() {
   function exportCsv() {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/daily';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/weekly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters/monthly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/reporters';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/reporters';
     }
 
     if (apiUrl !== '') {

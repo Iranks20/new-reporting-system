@@ -34,13 +34,13 @@ function Tables() {
   const handleRefresher = () => {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/daily';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/weekly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/monthly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences';
     }
 
     if (apiUrl !== '') {
@@ -57,13 +57,13 @@ function Tables() {
   function exportCsv() {
     let apiUrl = '';
     if (selectedOption === 'Daily') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/daily';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences/daily';
     } else if (selectedOption === 'Weekly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/weekly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences/weekly';
     } else if (selectedOption === 'Monthly') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences/monthly';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences/monthly';
     } else if (selectedOption === 'All') {
-      apiUrl = 'http://100.25.26.230:5000/api/v1/incidences';
+      apiUrl = 'http://16.171.10.64:5000/api/v1/incidences';
     }
 
     if (apiUrl !== '') {
@@ -119,7 +119,7 @@ function Tables() {
         //       type="primary"
         //       shape="circle"
         //       onClick={() => {
-        //         fetch(`http://100.25.26.230:5000/api/v1/incidences/status/${id}`, {
+        //         fetch(`http://16.171.10.64:5000/api/v1/incidences/status/${id}`, {
         //           method: 'PUT',
         //         })
         //           .then(() => {

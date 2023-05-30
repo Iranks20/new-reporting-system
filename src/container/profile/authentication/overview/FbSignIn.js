@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,6 @@ import {
   fbAuthLoginWithGoogle,
   fbAuthLoginWithFacebook,
 } from '../../../../redux/firebase/auth/actionCreator';
-import { Checkbox } from '../../../../components/checkbox/checkbox';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -26,9 +25,6 @@ function SignIn() {
     };
   });
   const [form] = Form.useForm();
-  const [state, setState] = useState({
-    checked: null,
-  });
 
   useEffect(() => {
     if (isFbAuthenticate) {
@@ -38,10 +34,6 @@ function SignIn() {
 
   const handleSubmit = (values) => {
     dispatch(fbAuthLogin(values));
-  };
-
-  const onChange = (checked) => {
-    setState({ ...state, checked });
   };
 
   return (
@@ -65,9 +57,6 @@ function SignIn() {
                 <Input.Password placeholder="Password" />
               </Form.Item>
               <div className="ninjadash-auth-extra-links">
-                <Checkbox onChange={onChange} checked={state.checked}>
-                  Keep me logged in
-                </Checkbox>
                 <NavLink className="forgot-pass-link" to="/forgotPassword">
                   Forgot password?
                 </NavLink>
