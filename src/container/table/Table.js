@@ -82,14 +82,14 @@ function Tables() {
 
   if (tableData.length > 0) {
     tableData.forEach((item) => {
-      const { id, incident, location, cordinates, byWho, toWhom, datetime, status } = item;
+      const { id, incident, location, cordinates, byWho, datetime, status } = item;
       tableDataScource.push({
         id: `${id}`,
         incident: <span className="ninjadash-username">{incident}</span>,
         location: <span className="ninjadash-username">{location}</span>,
         cordinates: <span>{cordinates}</span>,
         byWho: <span>{byWho}</span>,
-        toWhom,
+        // toWhom,
         // details: <span>{details}</span>,
         datetime,
         status: <span className={`ninjadash-status ninjadash-status-${status}`}>{status}</span>,
@@ -173,11 +173,11 @@ function Tables() {
       dataIndex: 'byWho',
       key: 'toWho',
     },
-    {
-      title: 'To whom',
-      dataIndex: 'toWhom',
-      key: 'toWhom',
-    },
+    // {
+    //   title: 'To whom',
+    //   dataIndex: 'toWhom',
+    //   key: 'toWhom',
+    // },
     // {
     //   title: 'Details',
     //   dataIndex: 'details',

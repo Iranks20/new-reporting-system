@@ -9,13 +9,13 @@ function Work() {
   const { search } = useLocation();
   const id = new URLSearchParams(search).get('id');
   const handleRefresh = () => {
-    fetch(`http://100.25.26.230:5000/api/v1/incidences/${id}`)
+    fetch(`http://16.171.10.64:5000/api/v1/incidences/${id}`)
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.log(error));
   };
   const markAsRead = () => {
-    fetch(`http://100.25.26.230:5000/api/v1/incidences/status/${id}`, {
+    fetch(`http://16.171.10.64:5000/api/v1/incidences/status/${id}`, {
       method: 'PUT',
     })
       .then((response) => response.json())

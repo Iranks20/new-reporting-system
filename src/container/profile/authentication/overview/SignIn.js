@@ -27,6 +27,7 @@ function SignIn() {
         setLoading(false);
         setSuccess(true);
         setTimeout(() => {
+          // localStorage.setItem('isLoggedIn', 'true');
           navigate('/admin');
         }, 2000);
       } else {
